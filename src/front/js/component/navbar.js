@@ -12,7 +12,7 @@ export const Navbar = () => {
 					<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						List
 					</a>
-					<div className="dropdown-menu bg-info h1 m-auto">
+					<div className="dropdown-menu h1 m-auto">
 						<Link to="/signup">
 							<button className="btn btn-primary m-1">Sign Up</button>
 						</Link>
