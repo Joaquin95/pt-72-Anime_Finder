@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar bs-primary-bg-subtle">
+		<nav className="navbar bs-info-bg-subtle text-info">
 			<div className="container">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1">Anime Finder</span>
@@ -12,7 +12,7 @@ export const Navbar = () => {
 					<a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						List
 					</a>
-					<div className="dropdown-menu h1 m-auto">
+					<div className="dropdown-menu bg-info h1 m-auto">
 						<Link to="/signup">
 							<button className="btn btn-primary m-1">Sign Up</button>
 						</Link>

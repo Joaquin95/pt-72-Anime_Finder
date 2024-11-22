@@ -21,7 +21,7 @@ export const Profile = () => {
 	}, [])
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center mt-5 text-white">
 			{
 				user.email != undefined ?  
 				<div>
