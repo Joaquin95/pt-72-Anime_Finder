@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../img/Anime logo.jpg";
 
 export const Navbar = () => {
 	return (
@@ -8,10 +9,12 @@ export const Navbar = () => {
 				<Link to="/">
 					<span className="navbar-brand text-dark mb-0 h1">Anime Finder</span>
 				</Link>
+				<img className="img" src={logo} />
 				<div className="ml-auto nav-item dropdown">
 					<a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						List
 					</a>
+					
 					<div className="dropdown-menu bg-dark h1 m-auto">
 						<Link to="/signup">
 							<button className="btn btn-primary text-dark m-1">Sign Up</button>
