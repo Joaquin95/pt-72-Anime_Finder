@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../img/Anime logo.jpg";
+import logo from "../../img/Anime logo2.jpg";
 
 export const Navbar = () => {
 	return (
@@ -9,7 +9,7 @@ export const Navbar = () => {
 				<Link to="/">
 					<span className="navbar-brand text-dark mb-0 h1">Anime Finder</span>
 				</Link>
-				<img className="img" src={logo} />
+				<img className="img" src={logo} className="img-fluid" alt="Responsive image"/>
 				<div className="ml-auto nav-item dropdown">
 					<a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						List
