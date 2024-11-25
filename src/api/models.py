@@ -16,3 +16,15 @@ class User(db.Model):
             "email": self.email,
             # do not serialize the password, its a security breach
         }
+    
+class FavoriteAnime(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    people_id = db.Column(db.Integer, db.ForeignKey(People.id))
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user_id,
+            "anime": self.anime_id,
+        }
