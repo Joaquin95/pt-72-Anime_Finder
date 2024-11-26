@@ -6,10 +6,11 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar bg-primary bs-info-bg-subtle text-info">
 			<div className="container">
+				<img className="img" src={logo} className="img-fluid" alt="Responsive image"/>
 				<Link to="/">
 					<span className="navbar-brand text-dark mb-0 h1">Anime Finder</span>
 				</Link>
-				<img className="img" src={logo} className="img-fluid" alt="Responsive image"/>
+				
 				<div className="ml-auto nav-item dropdown">
 					<a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						List
