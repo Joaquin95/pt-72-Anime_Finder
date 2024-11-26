@@ -66,7 +66,7 @@ def create_favanime():
 @app.route('/favoriteanime', methods=['GET'])
 def get_favanime():
 
-    fav_anime = Favoriteanime.query.all()
+    fav_anime = FavoriteAnime.query.all()
     all_favanime = list(map(lambda x: x.serialize(), fav_anime))
     return jsonify(all_favanime), 200 
 
@@ -80,7 +80,7 @@ def get_user_favanime(user_id):
    
     serialized_favorite_anime = [{
         "ID": favorite.anime_id,
-        "Anime's name": Anime.query.get(favorite.anime_id).name
+        "Anime's name": anime.query.get(favorite.anime_id).name
     } for favorite in userfav_anime]
 
     return {'Personal favorites': serialized_favorite_anime}, 200
