@@ -6,7 +6,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar bg-primary bs-info-bg-subtle text-info">
 			<div className="container">
-				<img className="img" src={logo} className="img-fluid" alt="Responsive image"/>
+				<img className="img img-fluid" src={logo} alt="Responsive image"/>
 				<Link to="/">
 					<span className="navbar-brand text-dark mb-0 h1">Anime Finder</span>
 				</Link>
