@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, FavoriteAnime
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
@@ -54,65 +54,63 @@ def get_user():
     return jsonify(user.serialize())
 
 @app.route('/favoritePeople', methods=['POST'])
-def create_favpeople():
-    request_fav_people = request.get_json()
+def create_favanime():
+    request_fav_anime = request.get_json()
 
-    new_fav_people = FavoritePeople(user_id=request_fav_people["user"], people_id=request_fav_people["people"])
-    db.session.add(new_fav_people)
+    new_fav_anime = FavoriteAnime(user_id=request_fav_anime["user"], people_id=request_fav_anime["people"])
+    db.session.add(new_fav_anime)
     db.session.commit()
 
-    return jsonify(request_fav_people), 200 
+    return jsonify(request_fav_anime), 200 
 
+@app.route('/favoriteanime', methods=['GET'])
+def get_favanime():
 
-@app.route('/favoritePeople', methods=['GET'])
-def get_favpeople():
+    fav_anime = Favoriteanime.query.all()
+    all_favanime = list(map(lambda x: x.serialize(), fav_anime))
+    return jsonify(all_favanime), 200 
 
-    fav_people = FavoritePeople.query.all()
-    all_favpeople = list(map(lambda x: x.serialize(), fav_people))
-    return jsonify(all_favpeople), 200 
+@app.route('/<int:user_id>/favoriteAnime', methods=['GET'])
+def get_user_favanime(user_id):
 
+    userfav_anime = FavoriteAnime.query.filter_by(user_id=user_id).all()
 
-@app.route('/<int:user_id>/favoritePeople', methods=['GET'])
-def get_user_favpeople(user_id):
-
-    userfav_people = FavoritePeople.query.filter_by(user_id=user_id).all()
-
-    if not userfav_people:
-        return {"message": "Este user no ha marcado ningún personaje favorito"}, 404
+    if not userfav_anime:
+        return {"message": "Favonite is not recognized"}, 404
    
-    serialized_favorite_people = [{
-        "ID": favorite.people_id,
-        "Character's name": People.query.get(favorite.people_id).name
-    } for favorite in userfav_people]
+    serialized_favorite_anime = [{
+        "ID": favorite.anime_id,
+        "Anime's name": Anime.query.get(favorite.anime_id).name
+    } for favorite in userfav_anime]
 
-    return {'Personajes favoritos del usuario': serialized_favorite_people}, 200
+    return {'Personal favorites': serialized_favorite_anime}, 200
 
-@app.route('/user/<int:user_id>/people/<int:people_id>', methods=['POST'])
-def post_user_favpeople(user_id, people_id):
+@app.route('/user/<int:user_id>/anime/<int:anime_id>', methods=['POST'])
+def post_user_favanime(user_id, anime_id):
 
     user = User.query.get(user_id)
     if not user:
-        return {"error": "El usuario no existe"}, 404
+        return {"error": "the favorite does not exist"}, 404
     
-    people = People.query.get(people_id)
-    if not people:
-        return {"error": "El personaje no existe"}, 404
+    anime = anime.query.get(anime_id)
+    if not anime:
+        return {"error": "the anime does not exist"}, 404
     
-    new_fav_people = FavoritePeople(user_id=user_id, people_id=people_id)
-    db.session.add(new_fav_people)
+    new_fav_anime = FavoriteAnime(user_id=user_id, anime_id=anime_id)
+    db.session.add(new_fav_anime)
     db.session.commit()
     
-    return {"message": "Personaje agregado como favorito existosamente"}
+    return {"message": "the users favorites do not exist"}
 
-@app.route('/favorite/people/<int:people_id>', methods=['DELETE'])
-def delete_favpeople(people_id):
+@app.route('/favorite/anime/<int:anime_id>', methods=['DELETE'])
+def delete_favanime(anime_id):
 
-    favpeople = FavoritePeople.query.filter_by(people_id=people_id).all()
-    if not favpeople:
-        return {"Error": "No hay registros de favoritos de este personaje"}
+    favanime = FavoriteAnime.query.filter_by(anime_id=anime_id).all()
+    if not favanime:
+        return {"Error": "There are no favorite records for this character"}
     
-    for person in favpeople:
-        db.session.delete(person)
+    for person in favanime:
+        db.session.delete(anime)
     db.session.commit()
 
-    return {"message": "Registros de este personaje eliminados de favoritos"}, 200
+    return {"message": "Records of this character removed from favorites"}, 200
