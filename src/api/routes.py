@@ -109,7 +109,7 @@ def delete_favanime(anime_id):
     if not favanime:
         return {"Error": "There are no favorite records for this character"}
     
-    for person in favanime:
+    for anime in favanime:
         db.session.delete(anime)
     db.session.commit()
 
