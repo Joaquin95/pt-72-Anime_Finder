@@ -53,59 +53,35 @@ def get_user():
     user = User.query.filter_by(email=email).first()
     return jsonify(user.serialize())
 
-@app.route('/favoritePeople', methods=['POST'])
+@api.route('/favoriteAnime', methods=['POST'])
+@jwt_required
 def create_favanime():
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email = user_email)
     request_fav_anime = request.get_json()
 
-    new_fav_anime = FavoriteAnime(user_id=request_fav_anime["user"], people_id=request_fav_anime["people"])
+    new_fav_anime = FavoriteAnime(user_id=user.id, people_id=request_fav_anime["anime"])
     db.session.add(new_fav_anime)
     db.session.commit()
 
     return jsonify(request_fav_anime), 200 
 
-@app.route('/favoriteanime', methods=['GET'])
+@api.route('/favoriteanime', methods=['GET'])
+@jwt_required
 def get_favanime():
-
-    fav_anime = FavoriteAnime.query.all()
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email = user_email)
+    fav_anime = FavoriteAnime.query.all(user_id = user.id)
     all_favanime = list(map(lambda x: x.serialize(), fav_anime))
     return jsonify(all_favanime), 200 
 
-@app.route('/<int:user_id>/favoriteAnime', methods=['GET'])
-def get_user_favanime(user_id):
 
-    userfav_anime = FavoriteAnime.query.filter_by(user_id=user_id).all()
-
-    if not userfav_anime:
-        return {"message": "Favonite is not recognized"}, 404
-   
-    serialized_favorite_anime = [{
-        "ID": favorite.anime_id,
-        "Anime's name": anime.query.get(favorite.anime_id).name
-    } for favorite in userfav_anime]
-
-    return {'Personal favorites': serialized_favorite_anime}, 200
-
-@app.route('/user/<int:user_id>/anime/<int:anime_id>', methods=['POST'])
-def post_user_favanime(user_id, anime_id):
-
-    user = User.query.get(user_id)
-    if not user:
-        return {"error": "the favorite does not exist"}, 404
-    
-    anime = anime.query.get(anime_id)
-    if not anime:
-        return {"error": "the anime does not exist"}, 404
-    
-    new_fav_anime = FavoriteAnime(user_id=user_id, anime_id=anime_id)
-    db.session.add(new_fav_anime)
-    db.session.commit()
-    
-    return {"message": "the users favorites do not exist"}
-
-@app.route('/favorite/anime/<int:anime_id>', methods=['DELETE'])
+@api.route('/favorite/anime/<int:anime_id>', methods=['DELETE'])
+@jwt_required
 def delete_favanime(anime_id):
-
-    favanime = FavoriteAnime.query.filter_by(anime_id=anime_id).all()
+    user_email = get_jwt_identity()
+    user = User.query.filter_by(email = user_email)
+    favanime = FavoriteAnime.query.filter_by(anime_id=anime_id, user_id = user.id).all()
     if not favanime:
         return {"Error": "There are no favorite records for this character"}
     
