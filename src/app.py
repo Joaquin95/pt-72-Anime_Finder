@@ -41,7 +41,6 @@ setup_commands(app)
 app.register_blueprint(api, url_prefix='/api')
 
 # Handle/serialize errors like a JSON object
-
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET")
 jwt = JWTManager(app)
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 60 * 3
