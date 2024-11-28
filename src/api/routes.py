@@ -54,7 +54,7 @@ def get_user():
     return jsonify(user.serialize())
 
 @api.route('/favoriteAnime', methods=['POST'])
-@jwt_required
+@jwt_required()
 def create_favanime():
     user_email = get_jwt_identity()
     user = User.query.filter_by(email = user_email)
@@ -67,7 +67,7 @@ def create_favanime():
     return jsonify(request_fav_anime), 200 
 
 @api.route('/favoriteanime', methods=['GET'])
-@jwt_required
+@jwt_required()
 def get_favanime():
     user_email = get_jwt_identity()
     user = User.query.filter_by(email = user_email)
@@ -77,7 +77,7 @@ def get_favanime():
 
 
 @api.route('/favorite/anime/<int:anime_id>', methods=['DELETE'])
-@jwt_required
+@jwt_required()
 def delete_favanime(anime_id):
     user_email = get_jwt_identity()
     user = User.query.filter_by(email = user_email)
