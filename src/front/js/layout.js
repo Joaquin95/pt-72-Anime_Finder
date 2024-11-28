@@ -9,6 +9,8 @@ import { Single } from "./pages/single";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Profile } from "./pages/profile";
+import { SearchAnime } from "./pages/searchAnime";
+import { SelectAnime } from "./pages/selectAnime";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
