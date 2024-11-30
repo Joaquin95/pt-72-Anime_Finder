@@ -7,7 +7,7 @@ export const Navbar = () => {
 			<div className="navbar-container">
 				<div className="logo-container">
 				<img
-						src="/path-to-your-logo.png"
+						src="/Anime_logo_converted.png"
 						alt="Anime Logo Here"
 						className="navbar-logo"
 					/>
