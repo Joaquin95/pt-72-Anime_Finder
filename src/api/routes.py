@@ -57,10 +57,10 @@ def get_user():
 @jwt_required()
 def create_favanime():
     user_email = get_jwt_identity()
-    user = User.query.filter_by(email = user_email)
+    user = User.query.filter_by(email=user_email).first()
     request_fav_anime = request.get_json()
 
-    new_fav_anime = FavoriteAnime(user_id=user.id, people_id=request_fav_anime["anime"])
+    new_fav_anime = FavoriteAnime(user_id=user.id, anime_id=request_fav_anime["anime"])
     db.session.add(new_fav_anime)
     db.session.commit()
 
@@ -71,7 +71,7 @@ def create_favanime():
 def get_favanime():
     user_email = get_jwt_identity()
     user = User.query.filter_by(email = user_email)
-    fav_anime = FavoriteAnime.query.all(user_id = user.id)
+    fav_anime = FavoriteAnime.query.filter_by(user_id=user.id).all()
     all_favanime = list(map(lambda x: x.serialize(), fav_anime))
     return jsonify(all_favanime), 200 
 
@@ -80,13 +80,15 @@ def get_favanime():
 @jwt_required()
 def delete_favanime(anime_id):
     user_email = get_jwt_identity()
-    user = User.query.filter_by(email = user_email)
-    favanime = FavoriteAnime.query.filter_by(anime_id=anime_id, user_id = user.id).all()
-    if not favanime:
-        return {"Error": "There are no favorite records for this character"}
+    user = User.query.filter_by(email=user_email).first()
+    if not user:
+        return jsonify({"error": "User not found"}), 404
     
-    for anime in favanime:
-        db.session.delete(anime)
+    favanime = FavoriteAnime.query.filter_by(anime_id=anime_id, user_id=user.id).first()
+    if not favanime:
+        return jsonify({"error": "No favorite records found for this anime"}), 404
+    
+    db.session.delete(favanime)
     db.session.commit()
-
-    return {"message": "Records of this character removed from favorites"}, 200
+    
+    return jsonify({"message": "Anime removed from favorites"}), 200
