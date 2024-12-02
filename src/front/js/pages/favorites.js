@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const Profile = () => {
 	const [user, setUser] = useState({})
@@ -26,10 +27,7 @@ export const Profile = () => {
 				user.email != undefined ?  
 				<div>
 					<h1>Welcome Back</h1>
-					<h3>{user.email}</h3>
-					<Link to="/favorites">
-						<button className="btn btn-primary text-dark m-1">Favorites</button>
-					</Link>
+					<h3>{user.email}</h3> 
 				</div>
 				:
 				<h1>YOU MUST LOGIN</h1>

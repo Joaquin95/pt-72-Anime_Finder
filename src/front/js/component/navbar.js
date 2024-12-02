@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/Anime logo2.jpg";
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
 	return (
 		<nav className="navbar bg-primary bs-info-bg-subtle text-info">
 			<div className="container">
-				<img className="logo" src={logo} />
+				<img className="logo d-flex flex-column w-25 mt-0 align-item-left" src={logo} />
 				<Link to="/">
-					<span className="navbar-brand text-dark mb-0 h1">Anime Finder</span>
+					<h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
 				</Link>
 				
 				<div className="ml-auto nav-item dropdown">
@@ -24,6 +25,9 @@ export const Navbar = () => {
 						</Link>
 						<Link to="/profile">
 							<button className="btn btn-primary text-dark m-1">Profile</button>
+						</Link>
+						<Link to="/favorites">
+							<button className="btn btn-primary text-dark m-1">Favorites</button>
 						</Link>
 					</div>
 				</div>
