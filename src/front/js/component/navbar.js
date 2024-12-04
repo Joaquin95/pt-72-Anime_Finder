@@ -7,7 +7,7 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar bg-primary bs-info-bg-subtle text-info">
 			<div className="container">
-				<img className="logo d-flex flex-column w-25 mt-0 align-item-left" src={logo} />
+				<img src={logo} style={{height: "40px"}} />
 				<Link to="/">
 					<h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
 				</Link>
