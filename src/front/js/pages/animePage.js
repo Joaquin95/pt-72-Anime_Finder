@@ -3,18 +3,18 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-export const SelectAnime = () => {
+export const AnimePage = () => {
 	const { store, actions } = useContext(Context);
-    const [animes, setAnimes] = useState([])
+    const [anime, setAnime] = useState({})
     const { id } = useParams();
 
     useEffect(() => {
-        async function getAnimes() {
-            const response = await fetch("https://api.jikan.moe/v4/anime?genres" + id)
+        async function getAnime() {
+            const response = await fetch("https://api.jikan.moe/v4/anime/" + id + "/full")
             const data = await response.json()
-            setAnimes(data.data) 
+            setAnime(data.data) 
         }
-        getAnimes() 
+        getAnime() 
     }, [])
 
     //function handleFindingStreamingService() {
@@ -25,10 +25,7 @@ export const SelectAnime = () => {
 
 	return (
 		<div className="text-center mt-5 bg-dark">
-            {animes?.map((anime, index) => (
-                <Link to={"/animes/" + anime.mal_id} key={index} className="text-light">{anime.title}</Link>
-                //button to trigger finding the streaming service
-            ))}
+            <div className="text-light">{anime.title}</div>
 		</div>
 	);
 };
