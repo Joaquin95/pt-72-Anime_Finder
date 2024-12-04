@@ -1,37 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "../../styles/home.css";
 
-export const Profile = () => {
-	const [user, setUser] = useState({})
+export const Home = () => {
 	const { store, actions } = useContext(Context);
-
-	const getUser = async() => {
-		let response = await fetch(process.env.BACKEND_URL + "/user" , {
-			headers: {
-				'Authorization': "Bearer " + store.token, 
-				'Content-Type': 'application/json'
-			}
-		})
-		let data = await response.json()
-		setUser(data)
-	}
-
-	useEffect(() => {
-		getUser()
-	}, [])
-
+	console.log(store.token)
 	return (
-		<div className="text-center mt-5">
-			{
-				user.email != undefined ?  
-				<div>
-					<h1>Welcome Back</h1>
-					<h3>{user.email}</h3> 
-				</div>
-				:
-				<h1>YOU MUST LOGIN</h1>
-			}
+		<div className="text-center mt-5 bg-dark">
+			
 		</div>
 	);
 };
