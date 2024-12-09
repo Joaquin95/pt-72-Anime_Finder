@@ -1,37 +1,56 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
     const [email, setEmail] = useState("");
-    const [password, setPasword] = useState("");
-	const { store, actions } = useContext(Context);
-    const navigate = useNavigate()
+    const [password, setPassword] = useState("");
+    const { store, actions } = useContext(Context);
+    const navigate = useNavigate();
 
-    const createUser = async() => {
-        let response = await fetch(process.env.BACKEND_URL + "/signup", {
-            method: "POST",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({ 
-                email: email,
-                password: password
-            })
-        })
-        let data = await response.json()
-        navigate("/")
-    }
+    const createUser = async () => {
+        try {
+            const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                    email: email,
+                    password: password,
+                }),
+            });
 
-	return (
-		<div className="text-center mt-5">
-			<div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Email</span>
-                <input type="text" onChange={(e) => setEmail(e.target.value)} className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-            </div>
-            <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Password</span>
-                <input type="password"  onChange={(e) => setPasword(e.target.value)}  className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-            </div>
-            <button className="btn btn-info" onClick={() => createUser()}>Sign up</button>
-		</div>
-	);
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Error:", errorData);
+                return alert(errorData.message || "Signup failed!");
+            }
+
+            const data = await response.json();
+            console.log("User created:", data);
+            alert("Signup successful!");
+            navigate("/");
+        } catch (error) {
+            console.error("Network error:", error);
+            alert("An error occurred. Please try again later.");
+        }
+    };
+
+    return (
+        <div className "">
+            <h1>Signup</h1>
+            <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={createUser}>Sign Up</button>
+        </div>
+    );
 };
