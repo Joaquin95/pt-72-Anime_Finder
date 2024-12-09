@@ -14,7 +14,8 @@ export const SelectAnime = () => {
             const data = await response.json()
             setAnimes(data.data) 
         }
-        getAnimes() 
+        getAnimes()
+        console.log 
     }, [])
 
     //function handleFindingStreamingService() {

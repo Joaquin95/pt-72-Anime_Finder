@@ -15,12 +15,6 @@ export const SelectGenre= () => {
         getGenres() 
     }, [])
 
-    //function handleFindingStreamingService() {
-        // const response = await fetch("")
-        // const data = await response.json()
-        // setAnimes(data) //might need to update this if you data is nested
-    // }
-
 	return (
 		<div className="text-center mt-5 bg-dark">
             {genres?.map((genre, index) => (
