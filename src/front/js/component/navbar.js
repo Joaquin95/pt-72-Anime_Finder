@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import Anime_logo_converted from './img/Anime_logo_converted.png';
 
 export const Navbar = () => {
 	return (
@@ -7,9 +8,8 @@ export const Navbar = () => {
 			<div className="navbar-container">
 				<div className="logo-container">
 				<img
-						src="/Anime_logo_converted.png"
+						// src={Anime_logo_converted}
 						alt="Anime Logo Here"
-						className="navbar-logo"
 					/>
 			</div>
 

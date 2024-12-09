@@ -5,7 +5,7 @@ import "react-calendar/dist/Calendar.css";
 const MyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Pool of available shows
+
   const showPool = [
     "Solo Leveling",
     "Jujutsu Kisen",
