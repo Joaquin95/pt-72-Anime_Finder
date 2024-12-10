@@ -9,7 +9,7 @@ export const Navbar = () => {
 				<div className="logo-container">
 				<img
 						// src={Anime_logo_converted}
-						alt="Anime Logo Here"
+						xxxalt=""
 					/>
 			</div>
 
