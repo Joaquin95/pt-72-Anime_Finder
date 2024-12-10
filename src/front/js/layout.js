@@ -40,6 +40,7 @@ const Layout = () => {
                         <Route element={<SelectAnime />} path="/animes/genres/:id" />
                         <Route element={<AnimePage />} path="/animes/:id" />
                         <Route element={<SelectGenre />} path="/genre" />
+
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

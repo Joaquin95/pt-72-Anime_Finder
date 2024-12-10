@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/Anime logo2.jpg";
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
 	return (
 		<nav className="navbar bg-primary bs-info-bg-subtle text-info">
 			<div className="container">
+				<Link to="/"><img src={logo} style={{height: "40px"}} /></Link>
 				<Link to="/">
-					<span className="navbar-brand text-dark mb-0 h1">Anime Finder</span>
+					<h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
 				</Link>
-				<img className="img" src={logo} className="img-fluid" alt="Responsive image"/>
+				
 				<div className="ml-auto nav-item dropdown">
 					<a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						List
@@ -23,6 +25,9 @@ export const Navbar = () => {
 						</Link>
 						<Link to="/profile">
 							<button className="btn btn-primary text-dark m-1">Profile</button>
+						</Link>
+						<Link to="/favorites">
+							<button className="btn btn-primary text-dark m-1">Favorites</button>
 						</Link>
 					</div>
 				</div>

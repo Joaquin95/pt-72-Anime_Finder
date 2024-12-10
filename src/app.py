@@ -27,10 +27,6 @@ if db_url is not None:
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
 
-app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET")
-jwt = JWTManager(app)
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 60 * 3
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
@@ -45,7 +41,9 @@ setup_commands(app)
 app.register_blueprint(api, url_prefix='/api')
 
 # Handle/serialize errors like a JSON object
-
+app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET")
+jwt = JWTManager(app)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 60 * 3
 
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):

@@ -26,7 +26,10 @@ export const Profile = () => {
 				user.email != undefined ?  
 				<div>
 					<h1>Welcome Back</h1>
-					<h3>{user.email}</h3> 
+					<h3>{user.email}</h3>
+					<Link to="/favorites">
+						<button className="btn btn-primary text-dark m-1">Favorites</button>
+					</Link>
 				</div>
 				:
 				<h1>YOU MUST LOGIN</h1>
