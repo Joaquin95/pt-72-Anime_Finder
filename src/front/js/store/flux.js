@@ -5,13 +5,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			demo: [
 				{
 					title: "FIRST",
-					background: "white",
-					initial: "white"
+					background: "black",
+					initial: "black"
 				},
 				{
 					title: "SECOND",
-					background: "white",
-					initial: "white"
+					background: "black",
+					initial: "black"
 				}
 			],
 			token: sessionStorage.getItem("token"),
