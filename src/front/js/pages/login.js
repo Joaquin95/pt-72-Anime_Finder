@@ -20,7 +20,7 @@ export const Login = () => {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Password</span>
-                <input type="password"  onChange={(e) => setPasword(e.target.value)}  className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input type="password"  onChange={(e) => setPassword(e.target.value)}  className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <button className="btn btn-info" onClick={() => loginUser()}>Login</button>
 		</div>
