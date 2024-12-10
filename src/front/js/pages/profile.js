@@ -21,18 +21,22 @@ export const Profile = () => {
     getUser();
   }, []);
 
-  return (
-    <div className="text-center mt-5">
-      {user.email != undefined ? (
-        <div>
-          <h1>Welcome Back</h1>
-          <h3>{user.email}</h3>
-          <h1 className="navbar-title">Anime Calendar</h1>
-          <MyCalendar />
-        </div>
-      ) : (
-        <h1>YOU MUST LOGIN</h1>
-      )}
-    </div>
-  );
+	return (
+		<div className="text-center mt-5">
+			{
+				user.email != undefined ?  
+				<div>
+					<h1>Welcome Back</h1>
+					<h3>{user.email}</h3>
+					<Link to="/favorites">
+						<button className="btn btn-primary text-dark m-1">Favorites</button>
+					</Link>
+					<h1 className="navbar-title">Anime Calendar</h1>
+          			<MyCalendar />
+				</div>
+				:
+				<h1>YOU MUST LOGIN</h1>
+			}
+		</div>
+	);
 };
