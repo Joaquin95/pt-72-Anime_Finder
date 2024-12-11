@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import MyCalendar from "./myCalendar";
-
+import { Link } from "react-router-dom";
+ 
 export const Profile = () => {
   const [user, setUser] = useState({});
   const { store, actions } = useContext(Context);
@@ -25,7 +26,7 @@ export const Profile = () => {
 		<div className="text-center mt-5">
 			{
 				user.email != undefined ?  
-				<div>
+				<div className="m-5">
 					<h1>Welcome Back</h1>
 					<h3>{user.email}</h3>
 					<Link to="/favorites">
