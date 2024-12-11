@@ -11,6 +11,8 @@ import { Signup } from "./pages/signup";
 import { Profile } from "./pages/profile";
 import injectContext from "./store/appContext";
 
+import "../styles/layout.css";
+
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 

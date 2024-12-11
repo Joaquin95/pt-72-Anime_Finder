@@ -9,7 +9,7 @@ export const Navbar = () => {
 			<div className="container">
 				<Link to="/"><img src={logo} style={{height: "40px"}} /></Link>
 				<Link to="/">
-					<h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
+					<h1 className="navbar-brand text-dark mb-0">Anime Finder</h1>
 				</Link>
 				
 				<div className="ml-auto nav-item dropdown">

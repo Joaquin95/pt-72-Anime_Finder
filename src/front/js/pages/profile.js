@@ -22,14 +22,14 @@ export const Profile = () => {
 
 	return (
 		<div className="text-center mt-5">
+			<Link to="/favorites">
+				<button className="btn btn-primary text-dark m-1">Favorites</button>
+			</Link>
 			{
 				user.email != undefined ?  
 				<div>
 					<h1>Welcome Back</h1>
-					<h3>{user.email}</h3>
-					<Link to="/favorites">
-						<button className="btn btn-primary text-dark m-1">Favorites</button>
-					</Link>
+					<h3>{user.email}</h3>	
 				</div>
 				:
 				<h1>YOU MUST LOGIN</h1>
