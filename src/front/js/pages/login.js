@@ -4,7 +4,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
-    const [password, setPasword] = useState("");
+    const [password, setPassword] = useState("");
 	const { store, actions } = useContext(Context);
     const navigate = useNavigate()
     const loginUser = async() => {
