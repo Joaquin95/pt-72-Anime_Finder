@@ -9,6 +9,10 @@ import { Single } from "./pages/single";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Profile } from "./pages/profile";
+import { SearchAnime } from "./pages/searchAnime";
+import { SelectAnime } from "./pages/selectAnime";
+import { SelectGenre } from "./pages/selectGenre";
+import { AnimePage } from "./pages/animePage";
 import injectContext from "./store/appContext";
 
 import "../styles/layout.css";
@@ -34,7 +38,11 @@ const Layout = () => {
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Signup />} path="/signup" />
-                        <Route element={<Profile />} path="/profile/:favorites" />
+                        <Route element={<Profile />} path="/profile" />
+                        <Route element={<SelectAnime />} path="/animes/genres/:id" />
+                        <Route element={<AnimePage />} path="/animes/:id" />
+                        <Route element={<SelectGenre />} path="/genre" />
+
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
