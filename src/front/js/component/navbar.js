@@ -11,10 +11,14 @@ export const Navbar = () => {
 				<Link to="/">
 					<h1 className="navbar-brand text-dark">Anime Finder</h1>
 				</Link>
+				<Link to="/mangaSearch" className="nav-item">
+          			<a className="nav-link text-dark">Manga</a>
+        		</Link>
 				<div className="ml-auto nav-item dropdown d-flex">
 					<a className="nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<i class="icon fa-solid fa-bars"></i>
 					</a>
+					
 					<div className="dropdown-menu bg-dark h1 m-1">
 						<Link to="/signup">
 							<button className="btn btn-primary text-dark m-1">Sign Up</button>
