@@ -36,6 +36,9 @@ export const SearchAnime = () => {
 				</Link>
 			))}
 			{/* button to trigger finding the streaming service */}
+			<Link to="/selectGenre">
+				<button type="button" class="btn btn-primary">Search By Genre</button>
+			</Link>
 		</div>
 	);
 };
