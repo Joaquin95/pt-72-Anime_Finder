@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
-import "../../styles/favorites.css";
 
 export const favorites = () => {
 	const { store, actions } = useContext(Context);

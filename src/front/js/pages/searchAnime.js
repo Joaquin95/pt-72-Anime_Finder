@@ -26,7 +26,8 @@ export const SearchAnime = () => {
 
 	return (
 		<div className="text-center mt-5 bg-dark">
-			{anime?.map((anime, index) => (
+			{
+			anime?.map((anime, index) => (
 				<Link
 					to={`/animes/${anime.mal_id}`}
 					key={index}
