@@ -8,6 +8,7 @@ export const Profile = () => {
   const { store, actions } = useContext(Context);
 
   const getUser = async () => {
+	console.log(store.token, "get user!!")
     let response = await fetch(process.env.BACKEND_URL + "/user", {
       headers: {
         Authorization: "Bearer " + store.token,
@@ -28,10 +29,10 @@ export const Profile = () => {
 				user.email != undefined ?  
 				<div className="m-5 profile-Container">
 					<h1>Welcome Back</h1>
-					<h3>{user.email}</h3>
-					<Link to="/favorites">
+					{/* <h3>{user.email}</h3> */}
+					{/* <Link to="/favorites">
 						<button className="btn btn-primary text-dark m-1">Favorites</button>
-					</Link>
+					</Link> */}
 					<h1 className="navbar-title">Anime Calendar</h1>
           			<MyCalendar />
 				</div>

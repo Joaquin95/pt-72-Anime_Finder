@@ -10,6 +10,7 @@ export const Login = () => {
 
 
     const loginUser = async() => {
+        sessionStorage.removeItem("token")
         actions.login(email,password)
         navigate("/profile")
     }

@@ -34,7 +34,7 @@ export const SearchAnime = () => {
 					key={index}
 					className="text-dark"
 				>
-					{animeData.titles.title}
+					{/* {animeData.titles.title} */}
 					{animeData.name}
 					{animeData.url}
 
