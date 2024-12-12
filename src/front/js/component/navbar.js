@@ -7,16 +7,15 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar bg-primary bs-info-bg-subtle text-info">
 			<div className="container">
-				<Link to="/"><img src={logo} style={{height: "40px"}} /></Link>
+				<Link to="/"><img src={logo} style={{height: "55px"}} /></Link>
 				<Link to="/">
-					<h1 className="navbar-brand text-dark mb-0">Anime Finder</h1>
+					<h1 className="navbar-brand text-dark">Anime Finder</h1>
 				</Link>
-				
-				<div className="ml-auto nav-item dropdown">
-					<a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						List
+				<div className="ml-auto nav-item dropdown d-flex">
+					<a className="nav-link text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="icon fa-solid fa-bars"></i>
 					</a>
-					<div className="dropdown-menu bg-dark h1 m-auto">
+					<div className="dropdown-menu bg-dark h1 m-1">
 						<Link to="/signup">
 							<button className="btn btn-primary text-dark m-1">Sign Up</button>
 						</Link>
@@ -28,6 +27,9 @@ export const Navbar = () => {
 						</Link>
 						<Link to="/favorites">
 							<button className="btn btn-primary text-dark m-1">Favorites</button>
+						</Link>
+						<Link to="/searchAnime">
+							<span className="search m-3 fa-solid fa-magnifying-glass"> Search</span>
 						</Link>
 					</div>
 				</div>
