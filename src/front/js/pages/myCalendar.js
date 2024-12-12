@@ -26,7 +26,6 @@ const MyCalendar = () => {
     return shuffledShows.slice(0, randomCount); 
   };
 
-
   const [shows, setShows] = useState({
     "2024-11-19": getRandomShows(),
     "2024-11-23": getRandomShows(),
@@ -56,6 +55,10 @@ const MyCalendar = () => {
   };
 
   const selectedDateShows = shows[selectedDate.toISOString().split("T")[0]] || [];
+
+    // data.broadcast.day for fetching the animes for the day selected on the calendar
+  // use this URL to get to data.broadcast.day https://api.jikan.moe/v4/anime
+  // that way when a user clicks on a date, it will display the animes for that day
 
   return (
     <div className="calendar-container">

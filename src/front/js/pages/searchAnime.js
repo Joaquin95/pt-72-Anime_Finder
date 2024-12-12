@@ -10,12 +10,14 @@ export const SearchAnime = () => {
 	useEffect(() => {
 		async function searchAnime() {
 			const response = await fetch(
-				`https://api.jikan.moe/v4/anime/${id}/streaming/full`
+				`https://api.jikan.moe/v4/anime/1/streaming`
 			);
 			const data = await response.json();
 			setStreaming(data.data);
+			console.log(data, "here is the anime")
 		}
 		searchAnime();
+
 	}, []);
 
 	// function findStreaming() {
@@ -25,16 +27,19 @@ export const SearchAnime = () => {
 	// }
 
 	return (
-		<div className="text-center mt-5 bg-dark">
-			{anime?.map((anime, index) => (
+		<div className="text-center mt-5 bg-light">
+			{anime.length > 0 ? anime.map((animeData, index) => (
 				<Link
-					to={`/animes/${anime.mal_id}`}
+					to={`/animes/${animeData.mal_id}`}
 					key={index}
-					className="text-light"
+					className="text-dark"
 				>
-					{anime.title}
+					{animeData.titles.title}
+					{animeData.name}
+					{animeData.url}
+
 				</Link>
-			))}
+			)): ""}
 			{/* button to trigger finding the streaming service */}
 		</div>
 	);

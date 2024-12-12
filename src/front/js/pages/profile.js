@@ -26,7 +26,7 @@ export const Profile = () => {
 		<div className="text-center mt-5">
 			{
 				user.email != undefined ?  
-				<div className="m-5">
+				<div className="m-5 profile-Container">
 					<h1>Welcome Back</h1>
 					<h3>{user.email}</h3>
 					<Link to="/favorites">
@@ -36,7 +36,10 @@ export const Profile = () => {
           			<MyCalendar />
 				</div>
 				:
-				<h1>YOU MUST LOGIN</h1>
+				<div>
+					<h1>YOU MUST LOGIN</h1>
+					<Link to="/login">Login</Link>
+				</div>
 			}
 		</div>
 	);

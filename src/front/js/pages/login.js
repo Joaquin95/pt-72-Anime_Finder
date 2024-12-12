@@ -7,9 +7,11 @@ export const Login = () => {
     const [password, setPassword] = useState("");
 	const { store, actions } = useContext(Context);
     const navigate = useNavigate()
+
+
     const loginUser = async() => {
         actions.login(email,password)
-        navigate("/")
+        navigate("/profile")
     }
 
 	return (
