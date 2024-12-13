@@ -29,8 +29,13 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
         let data = await response.json();
         sessionStorage.setItem("token", data.access_token);
+        setStore({token: data.access_token})
         console.log(sessionStorage.getItem("token"));
       },
+      logout: () => {
+        sessionStorage.removeItem("token")
+        setStore({token: null})
+      }, 
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
