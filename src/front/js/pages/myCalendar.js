@@ -4,37 +4,38 @@ import "react-calendar/dist/Calendar.css";
 
 const MyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [shows, setShows] = useState ({});
+  const [loading, setLoading] = useState (false);
+  const [error, setError] = useState (null);
 
+  const fetchAnimeByDay = (day) => {
+    setLoading(true);
+    setError(null);
 
-  const showPool = [
-    "Solo Leveling",
-    "Jujutsu Kisen",
-    "Bleach",
-    "Let this Grieving Soul Retire",
-    "Dragon Ball Daima",
-    "Dragon Ball Super",
-    "Overlord",
-    "Tower of God",
-    "Wistoria: Wand & Sword",
-    "My Hero Academia",
-    "Goodbye: Dragon Life",
-  ];
-
-  const getRandomShows = () => {
-    const randomCount = Math.floor(Math.random() * 3) + 1; 
-    const shuffledShows = [...showPool].sort(() => Math.random() - 0.5); 
-    return shuffledShows.slice(0, randomCount); 
+    return fetch("https://api.jikan.moe/v4/anime")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch data.")
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const filteredAnimes = data.data.filter((anime) => anime.broadcast.day === day);
+      return filteredAnimes.map((anime) => anime.title);
+    })
+    .catch((err) => { 
+      setError(err.message);
+      return[];
+    })
+    .finally(() => {
+      setLoading(false);
+    });
   };
-
-  const [shows, setShows] = useState({
-    "2024-11-19": getRandomShows(),
-    "2024-11-23": getRandomShows(),
-  });
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
 
-    const formattedDate = newDate.toISOString().split("T")[0];
+const formattedDate = newDate.toISOString().split("T")[0];
     if (!shows[formattedDate]) {
       setShows((prev) => ({
         ...prev,

@@ -15,7 +15,7 @@ export const Navbar = () => {
         <Link to="/">
           <h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
         </Link>
-        <div> {store.token != null ? "Your are logged in" : "Logged out"} </div>
+        {/* <div> {store.token != null ? "Your are logged in" : "Logged out"} </div> */}
         <div className="ml-auto nav-item dropdown">
           <a
             className="nav-link dropdown-toggle text-dark"
