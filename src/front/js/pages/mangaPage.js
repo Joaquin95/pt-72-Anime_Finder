@@ -2,10 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import MangaCard from "./compoent/mangaCards.jsx";
 
 export const mangaPage = () => {
 	const { store, actions } = useContext(Context);
-    const [anime, setAnime] = useState({})
+    const [manga, setManga] = useState({})
     const { id } = useParams();
 
     useEffect(() => {
@@ -24,8 +25,16 @@ export const mangaPage = () => {
     // }
 
 	return (
-		<div className="text-center mt-5 bg-dark">
-            <div className="text-light">{manga.title}</div>
+		<div className="d-flex flex-column w-100 mt-0 align-item-center">
+			{/* Anime card div */}
+			<h1 className="m-2">Popular Manga</h1>
+			<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+				{store.manga.map((item, index) => {
+					return (
+						<MangaCard item={item} index={index} key={index} category="anime" /> 
+					)
+				})}
+			</div>
 		</div>
 	);
 };

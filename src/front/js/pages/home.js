@@ -38,7 +38,7 @@ export const Home = () => {
 				{/* Anime card div */}
 				<h1 className="m-2">Popular Manga</h1>
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
-					{store.anime.map((item, index) => {
+					{store.manga.map((item, index) => {
 						return (
 							<MangaCard item={item} index={index} key={index} category="anime" /> 
 						)

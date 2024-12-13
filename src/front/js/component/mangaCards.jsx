@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import 'font-awesome/css/font-awesome.min.css'
 
 const MangaCard = ({ item, index, category }) => {
     const { store, actions } = useContext(Context);
@@ -67,7 +68,7 @@ const MangaCard = ({ item, index, category }) => {
                     </Link>
                     
                     <button className="btn-heart btn-outline-dark" onClick={handleFavorites} type="button">
-                        <FaGalacticRepublic />
+                    <FontAwesomeIcon icon="fa-regular fa-heart" />
                         <i className="fa-solid" style={{ color: isFavorite ? "#cd1818" : "red" }}></i>
                     </button>
                 </div>
