@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
-import Card from "../component/Card.jsx";
+import Card from "../component/animeCards.jsx";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
