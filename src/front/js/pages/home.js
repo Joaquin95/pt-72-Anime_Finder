@@ -11,7 +11,7 @@ export const Home = () => {
 	return (
 		<div className="text-center bg-dark">
 			<div className="anime1">
-				<h1 className="Anime1">New Anime for 2024</h1>
+				<h1 className="Anime1">New Anime</h1>
 			</div>
 			<div classname="anime2">
 				<h1>Classic Anime</h1>
