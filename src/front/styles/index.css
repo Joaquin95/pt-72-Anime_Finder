@@ -1,4 +1,73 @@
+body, h1 {
+  background-color: rgb(11, 8, 195);
+  background-repeat: no-repeat;
+}
 
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+.highlight {
+    background-color: #f0a500;
+    color: rgb(27, 12, 201);
+    border-radius: 50%;
+  }
+
+.calendar-container {
+    background-color: black;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
+    height: 100vh;         
+    text-align: center;    
+    margin: 0 auto;        
+  }
+
+.calendar-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow:  0 4px 6px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    width: 25%;
+    max-width: 500px;
+    color: black; 
+  }
+  
+.navbar {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  /* justify-content: center;  */
+  padding: 10px;
+}
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo-container {
+  position: absolute;
+  left: 10px; 
+}
+.navbar-logo {
+  height: 50px;
+  width: auto;
+  margin-right: 10px;
+}
+/* .navbar-brand {
+  font-size: 20px;
+  font-weight: bold;
+} */
+
+.navbar-center {
+  flex-grow: 1;
+  text-align: center;
+}
+.navbar-title {
+  background-color: blue;
+  border-radius: 5px;
+  margin: 0;
+}
