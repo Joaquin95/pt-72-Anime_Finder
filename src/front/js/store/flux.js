@@ -4,22 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 	
 	return {
 		store: {
-			starships: [],
+			anime: [],
 			favorites: [],
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "black",
-					initial: "black"
-				},
-				{
-					title: "SECOND",
-					background: "black",
-					initial: "black"
-				}
-			],
-			token: sessionStorage.getItem("token"),
+			manga: [],
 		},
 
 		actions: {
