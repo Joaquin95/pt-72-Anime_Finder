@@ -1,0 +1,15 @@
+.navbar-brand {
+    font-size: 2.50rem;
+    margin-top: .2rem
+};
+.icon {
+    font-size: 1.25rem;
+}
+.nav-link {
+    font-size: 1.75rem;
+    padding: 0;
+}
+.nav-item {
+    color: black;
+    font-size: 1.25rem;
+}

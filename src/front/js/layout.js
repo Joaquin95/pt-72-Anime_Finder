@@ -11,14 +11,18 @@ import { Single } from "./pages/single";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Profile } from "./pages/profile";
+import { Favorites } from "./pages/favorites";
 import { SearchAnime } from "./pages/searchAnime";
 import { SelectAnime } from "./pages/selectAnime";
 import { SelectGenre } from "./pages/selectGenre";
 import { AnimePage } from "./pages/animePage";
 import injectContext from "./store/appContext";
 
+import "../styles/layout.css";
+
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { MdFavorite } from "react-icons/md";
 
 //create your first component
 const Layout = () => {
@@ -40,11 +44,11 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<Signup />} path="/signup" />
             <Route element={<Profile />} path="/profile/:favorites" />
-            <Route element={<Profile />} path="/profile" />
+            <Route element={<Profile />} path="/profile/:favorites" />
             <Route element={<SelectAnime />} path="/animes/genres/:id" />
             <Route element={<AnimePage />} path="/animes/:id" />
             <Route element={<SelectGenre />} path="/genre" />
-            <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<SearchAnime />} path="/searchAnime" />            <Route element={<Single />} path="/single/:theid" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
