@@ -4,12 +4,15 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
-    const [password, setPasword] = useState("");
+    const [password, setPassword] = useState("");
 	const { store, actions } = useContext(Context);
     const navigate = useNavigate()
+
+
     const loginUser = async() => {
+        sessionStorage.removeItem("token")
         actions.login(email,password)
-        navigate("/")
+        navigate("/profile")
     }
 
 	return (
@@ -20,7 +23,7 @@ export const Login = () => {
             </div>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Password</span>
-                <input type="password"  onChange={(e) => setPasword(e.target.value)}  className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input type="password"  onChange={(e) => setPassword(e.target.value)}  className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
             <button className="btn btn-info" onClick={() => loginUser()}>Login</button>
 		</div>
