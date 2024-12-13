@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
-import Card from "../component/animeCards.jsx";
+import AnimeCard from "./component/animeCards.jsx";
+import MangaCard from "./compoent/mangaCards.jsx";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -17,7 +18,7 @@ export const Home = () => {
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
 					{store.anime.map((item, index) => {
 						return (
-							<Card item={item} index={index} key={index} category="anime" /> 
+							<AnimeCard item={item} index={index} key={index} category="anime" /> 
 						)
 					})}
 				</div>
@@ -28,7 +29,7 @@ export const Home = () => {
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
 					{store.anime.map((item, index) => {
 						return (
-							<Card item={item} index={index} key={index} category="anime" /> 
+							<AnimeCard item={item} index={index} key={index} category="anime" />
 						)
 					})}
 				</div>
@@ -39,7 +40,7 @@ export const Home = () => {
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
 					{store.anime.map((item, index) => {
 						return (
-							<Card item={item} index={index} key={index} category="anime" /> 
+							<MangaCard item={item} index={index} key={index} category="anime" /> 
 						)
 					})}
 				</div>

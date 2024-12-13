@@ -2,21 +2,21 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-const AnimeCard = ({ item, index, category }) => {
+const MangaCard = ({ item, index, category }) => {
     const { store, actions } = useContext(Context);
     const [imgErr, setImgErr] = useState(false);
 
     const handleImgErr = () => setImgErr(true);
-    const GUIDE_URL = "https://api.jikan.moe/v4/anime/{id}/pictures";
+    const GUIDE_URL = "https://api.jikan.moe/v4/manga/{id}/pictures";
     const getImageUrl = () => {
-        if (category === "anime") {
+        if (category === "manga") {
             return store.animeImages[index] || noImage;
         } return `${GUIDE_URL}${category}/${index + 1}.jpg`
 
     }
     const imageStyle = {
-        height: category === "starships" ? "180px" :
-            category === "manga" ? "254px" :
+        height: category === "manga" ? "180px" :
+            category === "genre" ? "254px" :
                 "auto",
     };
 
@@ -78,7 +78,7 @@ const AnimeCard = ({ item, index, category }) => {
 
 
 
-
+    
 };
 
-export default AnimeCard
+export default MangaCard
