@@ -19,6 +19,7 @@ export const favorites = () => {
 	return (
 		<div className="text-center mt-5 bg-dark">
             <div className="text-light">{anime.title}</div>
+            <h1 className="text-light">Here is your Favorites page</h1>
 		</div>
 	);
 };
