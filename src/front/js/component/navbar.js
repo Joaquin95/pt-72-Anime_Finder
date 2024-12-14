@@ -16,7 +16,7 @@ export const Navbar = () => {
         </Link>
 				<div className="ml-auto nav-item dropdown d-flex">
 					<a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i className="icon fa-solid fa-bars"></i>
+          			<i className="icon fa-solid fa-bars"></i>
 					</a>
 					<div className="dropdown-menu bg-dark h1 m-auto">
 						<Link to="/signup">

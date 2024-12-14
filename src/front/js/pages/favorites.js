@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState} from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-export const favorites = () => {
+export const Favorites = () => {
 	const { store, actions } = useContext(Context);
     const [anime, setAnime] = useState({})
     const { id } = useParams();
@@ -19,7 +19,7 @@ export const favorites = () => {
 	return (
 		<div className="text-center mt-5 bg-dark">
             <div className="text-light">{anime.title}</div>
-            <h1 className="text-light">Here is your Favorites page</h1>
+            <h1>Here is your Favorites page</h1>
 		</div>
 	);
 };
