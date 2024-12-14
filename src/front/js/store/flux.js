@@ -15,13 +15,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			token: sessionStorage.getItem("token"),
-      anime: [],
+     		anime: [],
 			favorites: [],
 			manga: [],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-
 
 			login: async (email, password) => {
 				let response = await fetch(process.env.BACKEND_URL + "/login", {
@@ -34,13 +32,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				let data = await response.json()
 				sessionStorage.setItem("token", data.access_token);
-        setStore({token: data.access_token})
+        		setStore({token: data.access_token})
 				console.log(sessionStorage.getItem("token"))
 			},
+
       logout: () => {
-        sessionStorage.removeItem("token")
-        setStore({token: null})
+        sessionStorage.removeItem("token");
+        setStore({token: null });
       }, 
+
+	  getAnimeByDay: (day) => {
+		fetch ("https://api.jikan.moe/v4/anime")
+		.then((response) => response.json())
+		.then((data) => {
+			const filteredAnime =data.data.filter(
+				(anime) => anime.broadcast.day === day
+			);
+			setStore({ anime: filteredAnime});
+		})
+		.catch((error) => console.log("Error fetching anime:", error))
+	  },
+	  
       getAnime: () => {
 				fetch('https://api.jikan.moe/v4/anime/1/full')
 				.then(resp => resp.json())
@@ -66,18 +78,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					favorites: newFavorites
 				})
 			},
-
-
-
-
-
-
-
-
-
-
-
-
 
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

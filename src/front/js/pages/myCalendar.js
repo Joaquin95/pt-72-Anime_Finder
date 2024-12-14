@@ -20,7 +20,7 @@ const MyCalendar = () => {
       return response.json();
     })
     .then((data) => {
-      const filteredAnimes = data.data.filter((anime) => anime.broadcast.day === day);
+      const filteredAnimes = data.data.filter((anime) => anime.broadcast?.day === day);
       return filteredAnimes.map((anime) => anime.title);
     })
     .catch((err) => { 
@@ -76,7 +76,7 @@ const MyCalendar = () => {
           <li key={index}>{show}</li>
         ))}
       </ul>
-      )}
+        )}
     </div>
   </div>
   );
