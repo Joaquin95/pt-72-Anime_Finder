@@ -34,24 +34,16 @@ const MyCalendar = () => {
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
+  const formattedDate = newDate.toISOString().split("T")[0];
+  const dayOfWeek = newDate.toLocalString("en-US", { weekDay: "long"});
 
-const formattedDate = newDate.toISOString().split("T")[0];
     if (!shows[formattedDate]) {
+      fetchAnimeByDay(dayOfWeek).then((animes) => {
       setShows((prev) => ({
         ...prev,
-        [formattedDate]: getRandomShows(),
+        [formattedDate]: animes,
       }));
-    }
-  };
-
-  const handleAddShow = () => {
-    const showName = prompt("Enter show name:");
-    if (showName) {
-      const formattedDate = selectedDate.toISOString().split("T")[0];
-      setShows((prev) => ({
-        ...prev,
-        [formattedDate]: [...(prev[formattedDate] || []), showName],
-      }));
+    })
     }
   };
 
@@ -68,18 +60,23 @@ const formattedDate = newDate.toISOString().split("T")[0];
       <Calendar
         onChange={handleDateChange}
         value={selectedDate}
-        tileClassName={({ date, view }) => {
+        tileClassName={({ date }) => {
           const formattedDate = date.toISOString().split("T")[0];
           return shows[formattedDate] ? "highlight" : null;
         }}
       />
       <h3>Shows on {selectedDate.toDateString()}:</h3>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
       <ul>
         {selectedDateShows.map((show, index) => (
           <li key={index}>{show}</li>
         ))}
       </ul>
-      <button onClick={handleAddShow}>Add Show</button>
+      )}
     </div>
   </div>
   );

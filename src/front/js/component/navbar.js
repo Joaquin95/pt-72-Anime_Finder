@@ -6,6 +6,8 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
   const {store, actions} = useContext(Context)
   console.log(store.token, "navbar token")
+
+  
   return (
     <nav className="navbar bg-primary bs-info-bg-subtle text-info">
       <div className="container">
