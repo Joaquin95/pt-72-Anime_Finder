@@ -42,11 +42,12 @@ const getState = ({ getStore, getActions, setStore }) => {
         setStore({token: null})
       }, 
       getAnime: () => {
-				fetch(apiUrl + "anime")
+				fetch('https://api.jikan.moe/v4/anime/1/full')
 				.then(resp => resp.json())
 				.then(data => setStore({planets: data.results}))
 				.catch(error => console.log(error))
 			},
+
 			getManga: () => {
 				fetch(apiMangaUrl + "manga")
 				.then(resp => resp.json())
