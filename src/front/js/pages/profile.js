@@ -31,6 +31,9 @@ export const Profile = () => {
 
 	return (
 		<div className="text-center mt-5">
+			<Link to="/favorites">
+				<button className="btn btn-primary text-dark m-1">Favorites</button>
+			</Link>
 			{
 				store.token ?  
 				<div className="m-5 profile-Container">
