@@ -2,18 +2,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "black",
-					initial: "black"
-				},
-				{
-					title: "SECOND",
-					background: "black",
-					initial: "black"
-				}
-			],
 			token: sessionStorage.getItem("token"),
      		anime: [],
 			favorites: [],
@@ -21,8 +9,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-			login: async (email, password) => {
-				let response = await fetch(process.env.BACKEND_URL + "/login", {
+			login: (email, password) => {
+				fetch(process.env.BACKEND_URL + "/login", {
 					method: "POST",
 					headers: { "Content-type": "application/json" },
 					body: JSON.stringify({ 
@@ -30,10 +18,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						password: password
 					})
 				})
-				let data = await response.json()
+				.then((response) => response.json())
+				.then((data) => {
 				sessionStorage.setItem("token", data.access_token);
         		setStore({token: data.access_token})
-				console.log(sessionStorage.getItem("token"))
+				console.log(sessionStorage.getItem("token"));
+			});
 			},
 
       logout: () => {
@@ -42,29 +32,40 @@ const getState = ({ getStore, getActions, setStore }) => {
       }, 
 
 	  getAnimeByDay: (day) => {
-		fetch ("https://api.jikan.moe/v4/anime")
+		 return fetch ("https://api.jikan.moe/v4/schedules")
 		.then((response) => response.json())
 		.then((data) => {
+			const formattedDay = day.charAt(0).toUpperCase() + day.slice(1).toLowerCase()
 			const filteredAnime =data.data.filter(
-				(anime) => anime.broadcast.day === day
+				(anime) => anime.broadcast?.day === formattedDay
 			);
 			setStore({ anime: filteredAnime});
+			return filteredAnime;
 		})
-		.catch((error) => console.log("Error fetching anime:", error))
+		.catch((error) => { 
+			console.log("Error fetching anime:", error);
+			setStore({ anime: [] });
+	  	});
 	  },
 	  
       getAnime: () => {
-				fetch('https://api.jikan.moe/v4/anime/1/full')
+				fetch("https://api.jikan.moe/v4/anime")
 				.then(resp => resp.json())
-				.then(data => setStore({planets: data.results}))
-				.catch(error => console.log(error))
+				.then(data => setStore({ anime: data.data || [] }))
+				.catch(error => {
+					console.log("Error fetching anime:", error);
+					setStore({anime: [] });
+	  			});
 			},
 
 			getManga: () => {
-				fetch(apiMangaUrl + "manga")
+				fetch("https://api.jikan.moe/v4/manga/95/characters")
 				.then(resp => resp.json())
-				.then(data => setStore({planets: data.results}))
-				.catch(error => console.log(error))
+				.then(data => setStore({ images: data.data || [] }))
+				.catch(error => {
+					 console.log( "Error fetching manga:", error);
+					 setStore({manga: [] });
+			 });
 			},
 			addFavorites: (favItem) => {
 				setStore({
