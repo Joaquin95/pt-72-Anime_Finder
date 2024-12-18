@@ -14,7 +14,7 @@ export const Navbar = () => {
         <Link to="/">
           <h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
         </Link>
-        <Link to="/mangaPage" className="nav-item">
+        <Link to="/mangaHomePage" className="nav-item">
           <a className="nav-link text-dark">Manga</a>
         </Link>
         <div className="ml-auto nav-item dropdown d-flex">
