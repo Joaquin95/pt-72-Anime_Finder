@@ -20,7 +20,7 @@ class FavoriteAnime(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
     anime_id = db.Column(db.Integer, nullable=False)
-    # manga_id = db.Column(db.Integer, nullable=False)
+    manga_id = db.Column(db.Integer, nullable=False)
 
     def serialize(self):
         return {
