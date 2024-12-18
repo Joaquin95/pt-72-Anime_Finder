@@ -41,9 +41,7 @@ export const Navbar = () => {
               <button className="btn btn-primary text-dark m-1">Profile</button>
             </Link>
             <Link to="/favorites">
-              <button className="btn btn-primary text-dark m-1">
-                Favorites
-              </button>
+              <button className="btn btn-primary text-dark m-1">Favorites</button>
             </Link>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import ProfilePic from "../../img/user image.png";
 import "../../styles/profile.css";
 import MyCalendar from "./myCalendar";
 import { Link, useNavigate } from "react-router-dom";
@@ -33,6 +34,7 @@ export const Profile = () => {
 
 	return (
 		<div className="text-center bg-dark">
+			<img src={ProfilePic} style={{ height: "100px"}} />
 			<Link to="/favorites">
 				<button className="btn btn-primary text-dark fs-2 m-4">Favorites</button>
 			</Link>

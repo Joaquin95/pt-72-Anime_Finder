@@ -58,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			.then((resp) => resp.json())
 			.then((data) => {
 			  if (data.data) {
-				const top10Manga = date.date.slice(0, 18);
+				const top10Manga = date.date.slice(0, 36);
 				setStore({ manga: top10Manga }); // Store the fetched manga list
 			  }
 			})
