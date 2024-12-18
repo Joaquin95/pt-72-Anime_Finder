@@ -3,18 +3,18 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-export const AnimePage = () => {
+export const MangaPage = () => {
 	const { store, actions } = useContext(Context);
-    const [anime, setAnime] = useState({})
+    const [anime, setManga] = useState({})
     const { id } = useParams();
 
     useEffect(() => {
-        async function getAnime() {
-            const response = await fetch("https://api.jikan.moe/v4/anime/" + id + "/full")
+        async function getManga() {
+            const response = await fetch("https://api.jikan.moe/v4/manga/" + id + "/full")
             const data = await response.json()
-            setAnime(data.data) 
+            setManga(data.data) 
         }
-        getAnime() 
+        getManga() 
     }, [])
 
     //function handleFindingStreamingService() {
