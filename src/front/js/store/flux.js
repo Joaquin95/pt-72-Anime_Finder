@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			.then((resp) => resp.json())
 			.then((data) => {
 			  if (data.data) {
-				const top10Anime = data.data.slice(0, 12); // Get the first 10 anime
+				const top10Anime = data.data.slice(0, 24); // Get the first 10 anime
 				setStore({ anime: top10Anime }); // Store the first 10 anime in state
 			  }
 			})
