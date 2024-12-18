@@ -2,22 +2,20 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 
-export const SearchAnime = () => {
+export const SearchManga = () => {
 	const { store, actions } = useContext(Context);
 	const [anime, setStreaming] = useState({});
 	const { id } = useParams();
 
 	useEffect(() => {
-		async function searchAnime() {
+		async function searchManga() {
 			const response = await fetch(
-				`https://api.jikan.moe/v4/anime/1/streaming`
+				`https://api.jikan.moe/v4/manga/${id}/streaming/full`
 			);
 			const data = await response.json();
 			setStreaming(data.data);
-			console.log(data, "here is the anime")
 		}
-		searchAnime();
-
+		searchManga();
 	}, []);
 
 	// function findStreaming() {
@@ -27,20 +25,21 @@ export const SearchAnime = () => {
 	// }
 
 	return (
-		<div className="text-center mt-5 bg-light">
-			{anime.length > 0 ? anime.map((animeData, index) => (
+		<div className="text-center mt-5 bg-dark">
+			{
+			anime?.map((anime, index) => (
 				<Link
-					to={`/animes/${animeData.mal_id}`}
+					to={`/manga/${manga.mal_id}`}
 					key={index}
-					className="text-dark"
+					className="text-light"
 				>
-					{/* {animeData.titles.title} */}
-					{animeData.name}
-					{animeData.url}
-
+					{anime.title}
 				</Link>
-			)): ""}
-			{/* button to trigger finding the streaming service */}
+			))}
+			{/* button to trigger finding the streaming service */}		
+			<Link to="/selectMangaGenre">
+				<button type="button" className="btn btn-primary">Search By Genre</button>
+			</Link>
 		</div>
 	);
 };

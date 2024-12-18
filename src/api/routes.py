@@ -50,6 +50,7 @@ def login():
 @jwt_required()
 def get_user():
     email = get_jwt_identity()
+    print(email, "email!!!!!")
     user = User.query.filter_by(email=email).first()
     return jsonify(user.serialize())
 
@@ -66,7 +67,7 @@ def create_favanime():
 
     return jsonify(request_fav_anime), 200 
 
-@api.route('/favoriteanime', methods=['GET'])
+@api.route('/favoriteAnime', methods=['GET'])
 @jwt_required()
 def get_favanime():
     user_email = get_jwt_identity()

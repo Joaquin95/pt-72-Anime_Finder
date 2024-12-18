@@ -1,7 +1,8 @@
+body, h1 {
+  background-color: rgb(11, 8, 195);
+  background-repeat: no-repeat;
+}
 
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
 .highlight {
     background-color: #f0a500;
     color: rgb(27, 12, 201);
@@ -66,7 +67,6 @@
   text-align: center;
 }
 .navbar-title {
-  background-color: blue;
   border-radius: 5px;
   margin: 0;
 }

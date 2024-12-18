@@ -7,9 +7,12 @@ export const Login = () => {
     const [password, setPassword] = useState("");
 	const { store, actions } = useContext(Context);
     const navigate = useNavigate()
+
+
     const loginUser = async() => {
+        sessionStorage.removeItem("token")
         actions.login(email,password)
-        navigate("/")
+        navigate("/profile")
     }
 
 	return (
