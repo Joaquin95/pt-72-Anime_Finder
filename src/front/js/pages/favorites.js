@@ -35,6 +35,30 @@ export const Favorites = () => {
           )}
         </div>
       </div>
+      <h1>Your Favorite Manga</h1>
+      <div className="container mt-4">
+        <div className="row">
+          {store.favorites.length > 0 ? (
+            store.favorites.map((fav, index) => (
+              <div key={index} className="col-12 col-md-4 mb-4">
+                <div className="card bg-light shadow-sm">
+                  <img
+                    src={fav.image}
+                    className="card-img-top"
+                    style={{ height: "180px", objectFit: "contain" }}
+                    alt={fav.title || "Anime Image"}
+                  />
+                  <div className="card-body text-dark">
+                    <h5 className="card-title">{fav.title}</h5>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No favorites added yet. Start adding some!</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

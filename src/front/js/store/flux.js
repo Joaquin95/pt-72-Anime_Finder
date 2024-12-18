@@ -58,7 +58,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			.then((resp) => resp.json())
 			.then((data) => {
 			  if (data.data) {
-				setStore({ manga: data.data }); // Store the fetched manga list
+				const top10Manga = date.date.slice(0, 18);
+				setStore({ manga: top10Manga }); // Store the fetched manga list
 			  }
 			})
 			.catch((error) => console.error("Error fetching manga:", error));
@@ -111,32 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			})
 			.catch((error) => console.error("Error deleting favorite:", error));
 		},
-  
-		getFavorites: () => {
-		  const store = getStore();
-  
-		  setStore({ favorites: [], isLoading: true }); // Set loading to true
-  
-		  fetch(process.env.BACKEND_URL + "/favoriteAnime", {
-			method: "GET",
-			headers: {
-			  Authorization: "Bearer " + store.token, // Send JWT token
-			},
-		  })
-			.then((resp) => {
-			  if (!resp.ok) throw new Error("Failed to fetch favorites");
-			  return resp.json();
-			})
-			.then((data) => {
-			  console.log("Fetched favorites:", data);
-			  setStore({ favorites: data, isLoading: false }); // Set favorites and turn off loading
-			})
-			.catch((error) => {
-			  console.error("Error fetching favorites:", error);
-			  setStore({ isLoading: false }); // Turn off loading even if fetch fails
-			});
-		},
-  
+
 		//   exampleFunction: () => {
 		//     getActions().changeColor(0, "green");
 		//   },

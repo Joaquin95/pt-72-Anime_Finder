@@ -12,7 +12,7 @@ export const Home = () => {
 
   return (
     <div className="main-div w-100 bg-dark text-light">
-      <div className="container mt-5">
+      <div className="container">
         {/* Title */}
         <h1 className="text-center mb-4">Popular Anime</h1>
 

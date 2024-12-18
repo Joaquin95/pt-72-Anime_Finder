@@ -1,40 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import MangaCard from "./compoent/mangaCards.jsx";
+import "../../styles/home.css";
+import { MangaCard } from "../component/mangaCards";
 
-export const mangaPage = () => {
-	const { store, actions } = useContext(Context);
-    const [manga, setManga] = useState({})
-    const { id } = useParams();
+export const MangaPage = () => {
+  const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        async function getmanga() {
-            const response = await fetch("https://api.jikan.moe/v4/manga/" + id + "/full")
-            const data = await response.json()
-            setmanga(data.data) 
-        }
-        getmanga() 
-    }, [])
+  useEffect(() => {
+    actions.getAnime(); // Fetch top 10 anime when the component mounts
+  }, []);
 
-    //function handleFindingStreamingService() {
-        // const response = await fetch("")
-        // const data = await response.json()
-        // setAnimes(data) //might need to update this if you data is nested
-    // }
+  return (
+    <div className="main-div w-100 bg-dark text-light">
+      <div className="container">
+        {/* Title */}
+        <h1 className="text-center mb-4">Popular Anime</h1>
 
-	return (
-		<div className="d-flex flex-column w-100 mt-0 align-item-center">
-			{/* Anime card div */}
-			<h1 className="m-2">Popular Manga</h1>
-			<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
-				{store.manga.map((item, index) => {
-					return (
-						<MangaCard item={item} index={index} key={index} category="anime" /> 
-					)
-				})}
-			</div>
-		</div>
-	);
+        {/* 3-Column Grid */}
+        <div className="row justify-content-center">
+          {store.manga.map((item, index) => (
+            <div
+              className="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center"
+              key={index}
+            >
+              <MangaCard item={item} index={index} category="anime" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };

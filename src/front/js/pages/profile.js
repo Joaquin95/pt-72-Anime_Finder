@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/profile.css";
 import MyCalendar from "./myCalendar";
 import { Link, useNavigate } from "react-router-dom";
+
  
 export const Profile = () => {
   const [user, setUser] = useState({});
@@ -30,9 +32,9 @@ export const Profile = () => {
   }, []);
 
 	return (
-		<div className="text-center mt-5">
+		<div className="text-center bg-dark">
 			<Link to="/favorites">
-				<button className="btn btn-primary text-dark m-1">Favorites</button>
+				<button className="btn btn-primary text-dark fs-2 m-4">Favorites</button>
 			</Link>
 			{
 				store.token ?  
