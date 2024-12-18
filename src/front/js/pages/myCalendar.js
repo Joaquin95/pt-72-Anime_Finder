@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Notifications from './notifications';
 
 const MyCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -62,6 +63,7 @@ const MyCalendar = () => {
 
   return (
     <div className="calendar-container">
+      <Notifications calendarShows={shows} />
       <div className="calendar-box">
       <h2>Favorite Shows Calendar</h2>
       <Calendar

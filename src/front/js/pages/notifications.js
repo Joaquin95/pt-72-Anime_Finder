@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../../styles/notifications.css"; 
+import "../../styles/notifications.css";
 
 export const Notifications = ({ calendarShows }) => {
   const [isActive, setIsActive] = useState(false);
@@ -24,7 +24,9 @@ export const Notifications = ({ calendarShows }) => {
 
   const notifyShows = async () => {
     const today = new Date();
-    const formattedDate = today.toISOString().split("T")[0];
+    // Adjust to local time zone and format as YYYY-MM-DD
+    const offsetDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000);
+    const formattedDate = offsetDate.toISOString().split("T")[0];
 
     if (calendarShows[formattedDate]) {
       calendarShows[formattedDate].forEach((show) => {
@@ -36,12 +38,11 @@ export const Notifications = ({ calendarShows }) => {
         toast.info(`New show "${show}" is airing today!`);
       });
     }
-    
   };
   const testNotification = () => {
-  // this is a test notification
+    // this is a test notification
     toast.info("Test Notification: This is how a notification will appear!");
-}
+  };
 
   useEffect(() => {
     let notificationInterval;
@@ -49,7 +50,7 @@ export const Notifications = ({ calendarShows }) => {
     if (isActive) {
       notificationInterval = setInterval(() => {
         notifyShows();
-      }, 3600000);
+      }, 9000);
     }
 
     return () => {
@@ -63,14 +64,15 @@ export const Notifications = ({ calendarShows }) => {
         className={`toggle-button ${isActive ? "active" : ""}`}
         onClick={() => setIsActive(!isActive)}
       >
-        {isActive ? "Deactivate Notifications" : "Activate Notifications"}
+        <i className="fa-regular fa-bell"></i>
+        {/* {isActive ? "Deactivate Notifications" : "Activate Notifications"} */}
       </button>
       <button className="test-button" onClick={testNotification}>
         Test Notification
       </button>
-      <ToastContainer />
+      <ToastContainer autoClose={10000} />
     </div>
   );
 };
 
-
+export default Notifications;
