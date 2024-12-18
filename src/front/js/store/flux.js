@@ -64,7 +64,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			})
 			.catch((error) => console.error("Error fetching manga:", error));
 		},
-		addFavorites: (animeId) => {
+		
+		addFavorites: (animeId, mangaId) => {
 		  const store = getStore();
   
 		  if (!store.token) {
@@ -72,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			return;
 		  }
   
-		  console.log("Sending favorite animeId:", animeId);
+		  console.log("Sending favorite animeId:", animeId, mangaId);
 		  console.log("Authorization Header:", `Bearer ${store.token}`);
   
 		  fetch(process.env.BACKEND_URL + "/favoriteAnime", {
@@ -82,6 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  Authorization: "Bearer " + store.token, // Send the Bearer token
 			},
 			body: JSON.stringify({ anime: animeId }),
+				body:JSON.stringify({ manga: mangaId})
 		  })
 			.then((resp) => {
 			  console.log("POST Response status:", resp.status); // Log response status
@@ -96,10 +98,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			});
 		},
   
-		deleteFavorites: (animeId) => {
+		deleteFavorites: (animeId, mangaId) => {
 		  const store = getStore();
   
-		  fetch(`${process.env.BACKEND_URL}/favorite/anime/${animeId}`, {
+		  fetch(`${process.env.BACKEND_URL}/favorite/anime/${animeId, mangaId}`, {
 			method: "DELETE",
 			headers: {
 			  Authorization: "Bearer " + store.token, // Add token for authorization

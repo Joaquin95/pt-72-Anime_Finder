@@ -1,31 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 export const MangaPage = () => {
-	const { store, actions } = useContext(Context);
-    const [anime, setManga] = useState({})
+    const { store, actions } = useContext(Context);
+    const [anime, setManga] = useState({});
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
 
     useEffect(() => {
         async function getManga() {
-            const response = await fetch("https://api.jikan.moe/v4/manga/" + id + "/full")
-            const data = await response.json()
-            setManga(data.data) 
+            setLoading(true);
+            try {
+                const response = await fetch("https://api.jikan.moe/v4/manga/" + id + "/full");
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                const data = await response.json();
+                setManga(data.data);
+            } catch (error) {
+                console.error(error);
+                setManga(null);
+            } finally {
+                setLoading(false);
+            }
         }
-        getManga() 
-    }, [])
+        getManga();
+    }, [id]);
 
-    //function handleFindingStreamingService() {
-        // const response = await fetch("")
-        // const data = await response.json()
-        // setAnimes(data) //might need to update this if you data is nested
-    // }
+    if (loading) {
+        return <div className="text-center mt-5 bg-dark text-light">Loading...</div>;
+    }
 
-	return (
-		<div className="text-center mt-5 bg-dark">
-            <div className="text-light">{anime.title}</div>
-		</div>
-	);
+    if (!anime) {
+        return <div className="text-center mt-5 bg-dark text-light">Failed to load manga data.</div>;
+    }
+
+    return (
+        <div className="text-center mt-5 bg-dark">
+            <div className="text-light">{manga.title || "Manga title not available"}</div>
+        </div>
+    );
 };
