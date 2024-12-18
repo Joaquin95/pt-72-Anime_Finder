@@ -1,0 +1,48 @@
+.notifications-container {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .toggle-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .toggle-button.active {
+    background-color: #dc3545;
+  }
+  
+  .toggle-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .toggle-button:active {
+    transform: scale(0.95);
+  }
+  
+  .test-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .test-button:hover {
+    background-color: #218838;
+  }
+  
+  .test-button:active {
+    transform: scale(0.95);
+  }
+  
