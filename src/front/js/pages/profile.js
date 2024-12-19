@@ -12,7 +12,7 @@ export const Profile = () => {
 
   const getUser = async () => {
     // console.log(store.token, "get user!!")
-    let response = await fetch(process.env.BACKEND_URL + "/user", {
+    let response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "/user", {
       headers: {
         Authorization: "Bearer " + store.token,
         "Content-Type": "application/json",
