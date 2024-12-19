@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/favorites.css"
 
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
@@ -10,7 +11,7 @@ export const Favorites = () => {
   }, []);
 
   return (
-    <div className="text-center mt-5 bg-dark text-light">
+    <div className="text-center bg-dark text-light">
       <h1>Your Favorite Anime</h1>
       <div className="container mt-4">
         <div className="row">
