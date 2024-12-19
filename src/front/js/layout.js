@@ -16,6 +16,7 @@ import { SelectGenre } from "./pages/selectGenre";
 import { AnimePage } from "./pages/animePage";
 import injectContext from "./store/appContext";
 import { Favorites } from "./pages/favorites";
+import { MangaHomePage } from "./pages/mangaHomePage";
 
 import "../styles/layout.css";
 
@@ -44,6 +45,7 @@ const Layout = () => {
             <Route element={<Signup />} path="/signup" />
             <Route element={<Favorites />} path="/favorites" />
             <Route element={<Profile />} path="/profile" />
+            <Route element={<MangaHomePage />} path="/mangaHomePage" />
             <Route element={<SelectAnime />} path="/animes/genres/:id" />
             <Route element={<AnimePage />} path="/animes/:id" />
             <Route element={<SelectGenre />} path="/genre" />

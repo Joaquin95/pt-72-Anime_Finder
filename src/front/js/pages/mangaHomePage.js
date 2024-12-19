@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { MangaCard } from "../component/mangaCards";
 
-export const MangaPage = () => {
+export const MangaHomePage = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
