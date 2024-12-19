@@ -9,16 +9,30 @@ export const Signup = () => {
   const navigate = useNavigate();
 
   const createUser = async () => {
-    let response = await fetch(process.env.BACKEND_URL + "/signup", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
-    let data = await response.json();
-    navigate("/login");
+    try {
+      let response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/signup`,
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        let data = await response.json();
+        navigate("/login"); // Navigate to login after successful signup
+      } else {
+        console.error("Signup failed:", response.statusText);
+        alert("Signup failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
