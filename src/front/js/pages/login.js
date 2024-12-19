@@ -13,7 +13,7 @@ export const Login = () => {
     await actions.login(email, password);
 
     navigate("/profile");
-    window.location.reload();
+
     actions.getFavorites();
     console.log(store.favorites, "here are your favs");
   };
