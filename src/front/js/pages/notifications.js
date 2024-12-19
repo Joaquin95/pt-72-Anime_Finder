@@ -25,17 +25,9 @@ export const Notifications = ({ calendarShows, day }) => {
   };
 
   const notifyShows = async () => {
-    console.log("notify shows ran");
-    // const today = new Date();
-    // // Adjust to local time zone and format as YYYY-MM-DD
-    // const offsetDate = new Date(
-    //   today.getTime() - today.getTimezoneOffset() * 60000
-    // );
     actions.getAnimeByDay(day)
-    // const formattedDate = offsetDate.toISOString().split("T")[0];
-    console.log(store.watchlist);
     if (store.watchlist) {
-      watchlist.forEach((show) => {
+      store.watchlist.forEach((show) => {
         toast.info(`Reminder: "${show.title}" is airing today!`);
       });
     } else {
@@ -45,10 +37,6 @@ export const Notifications = ({ calendarShows, day }) => {
       });
     }
   };
-  const testNotification = () => {
-    // this is a test notification
-    toast.info("Test Notification: This is how a notification will appear!");
-  };
 
   useEffect(() => {
     let notificationInterval;
@@ -56,7 +44,7 @@ export const Notifications = ({ calendarShows, day }) => {
     if (isActive) {
       notificationInterval = setInterval(() => {
         notifyShows();
-      }, 9000);
+      }, 11000);
     }
 
     return () => {

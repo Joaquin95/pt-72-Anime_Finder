@@ -35,7 +35,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  let data = await response.json();
 		  sessionStorage.setItem("token", data.access_token);
 		  setStore({ token: data.access_token });
-		  console.log(sessionStorage.getItem("token"));
 		},
 		logout: () => {
 		  sessionStorage.removeItem("token");
@@ -111,7 +110,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 		  }
   
 		  console.log("Sending favorite animeId:", animeId);
-		  console.log("Authorization Header:", `Bearer ${store.token}`);
   
 		  fetch(process.env.BACKEND_URL + "/favoriteAnime", {
 			method: "POST",
@@ -136,7 +134,8 @@ const getState = ({ getStore, getActions, setStore }) => {
   
 		deleteFavorites: (animeId) => {
 		  const store = getStore();
-  
+		  const actions = getActions();
+
 		  fetch(`${process.env.BACKEND_URL}/favorite/anime/${animeId}`, {
 			method: "DELETE",
 			headers: {
@@ -167,7 +166,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			  return resp.json();
 			})
 			.then((data) => {
-			  console.log("Fetched favorites:", data);
 			  setStore({ favorites: data, isLoading: false }); // Set favorites and turn off loading
 			})
 			.catch((error) => {

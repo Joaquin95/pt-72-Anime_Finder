@@ -9,6 +9,14 @@ export const AnimeCard = ({ item, index }) => {
     (fav) => fav.anime_id === item.mal_id
   );
 
+  const animePage = () =>
+    if (onclick) {
+      actions.animePage(item.mal_id);
+    else {
+      action.animePage(item.mal-id);
+    }
+  };
+
   const handleFavorites = () => {
     if (isFavorite) {
       actions.deleteFavorites(item.mal_id); // Remove favorite
@@ -30,7 +38,7 @@ export const AnimeCard = ({ item, index }) => {
         <p className="card-text">Type: {item.type}</p>
         <p className="card-text">Episodes: {item.episodes || "N/A"}</p>
         <div className="d-flex justify-content-between mt-auto">
-          <button className="btn btn-warning me-3">Series Info</button>
+          <button className="btn btn-warning me-3" onClick={animePage} type="button">Series Info</button>
           {store.token ? (
             <button
               className="btn btn-outline-dark"
