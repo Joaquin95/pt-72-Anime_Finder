@@ -24,7 +24,7 @@ export const Login = () => {
       <div className="text-center login-content">
         <h2>Log In Here</h2>
         <div className="login-container rounded">
-          <div className="input-group mb-3">
+          <div className="input-group mb-4">
             <span className="input-group-text" id="inputGroup-sizing-default">
               Email
             </span>
