@@ -1,0 +1,10 @@
+html {
+    background-color: black;
+}
+h1 {
+    color: rgba(50, 131, 237, 1);
+    font-size: 1.75rem;
+}
+img {
+    display: inline-flex;
+}

@@ -1,29 +1,29 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
-import { AnimeCard } from "../component/animeCards";
+import { MangaCard } from "../component/mangaCards";
 
-export const Home = () => {
+export const MangaHomePage = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getAnime(); // Fetch top 10 anime when the component mounts
+    actions.getManga(); // Fetch top 10 manga when the component mounts
   }, []);
 
   return (
     <div className="main-div w-100 bg-dark text-light">
       <div className="container">
         {/* Title */}
-        <h1 className="text-center mb-4">Popular Anime</h1>
+        <h1 className="text-center mb-4">Popular Manga</h1>
 
         {/* 3-Column Grid */}
         <div className="row justify-content-center">
-          {store.anime.map((item, index) => (
+          {store.manga.map((item, index) => (
             <div
               className="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center"
               key={index}
             >
-              <AnimeCard item={item} index={index} category="anime" />
+              <MangaCard item={item} index={index} category="manga" />
             </div>
           ))}
         </div>

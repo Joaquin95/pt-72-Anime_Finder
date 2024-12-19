@@ -1,40 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import MangaCard from "./compoent/mangaCards.jsx";
 
-export const mangaPage = () => {
-	const { store, actions } = useContext(Context);
-    const [manga, setManga] = useState({})
+export const MangaPage = () => {
+    const { store, actions } = useContext(Context);
+    const [anime, setManga] = useState({});
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
 
     useEffect(() => {
-        async function getmanga() {
-            const response = await fetch("https://api.jikan.moe/v4/manga/" + id + "/full")
-            const data = await response.json()
-            setmanga(data.data) 
+        async function getManga() {
+            setLoading(true);
+            try {
+                const response = await fetch("https://api.jikan.moe/v4/manga/" + id + "/full");
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.statusText}`);
+                }
+                const data = await response.json();
+                setManga(data.data);
+            } catch (error) {
+                console.error(error);
+                setManga(null);
+            } finally {
+                setLoading(false);
+            }
         }
-        getmanga() 
-    }, [])
+        getManga();
+    }, [id]);
 
-    //function handleFindingStreamingService() {
-        // const response = await fetch("")
-        // const data = await response.json()
-        // setAnimes(data) //might need to update this if you data is nested
-    // }
+    if (loading) {
+        return <div className="text-center mt-5 bg-dark text-light">Loading...</div>;
+    }
 
-	return (
-		<div className="d-flex flex-column w-100 mt-0 align-item-center">
-			{/* Anime card div */}
-			<h1 className="m-2">Popular Manga</h1>
-			<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
-				{store.manga.map((item, index) => {
-					return (
-						<MangaCard item={item} index={index} key={index} category="anime" /> 
-					)
-				})}
-			</div>
-		</div>
-	);
+    if (!anime) {
+        return <div className="text-center mt-5 bg-dark text-light">Failed to load manga data.</div>;
+    }
+
+    return (
+        <div className="text-center mt-5 bg-dark">
+            <div className="text-light">{manga.title || "Manga title not available"}</div>
+        </div>
+    );
 };
