@@ -25,15 +25,15 @@ export const Notifications = ({ calendarShows, day }) => {
   };
 
   const notifyShows = async () => {
-    actions.getAnimeByDay(day)
+    actions.getAnimeByDay(day);
     if (store.watchlist) {
       store.watchlist.forEach((show) => {
-        toast.info(`Reminder: "${show.title}" is airing today!`);
+        toast.info(`Reminder: "${show.title}" is airing on this day!"`);
       });
     } else {
       const apiShows = await fetchDailyShows(today);
       apiShows.forEach((show) => {
-        toast.info(`New show "${show}" is airing today!`);
+        toast.info(`New show "${show}" is airing on this day!`);
       });
     }
   };
@@ -44,7 +44,7 @@ export const Notifications = ({ calendarShows, day }) => {
     if (isActive) {
       notificationInterval = setInterval(() => {
         notifyShows();
-      }, 11000);
+      }, 9000);
     }
 
     return () => {
@@ -58,7 +58,7 @@ export const Notifications = ({ calendarShows, day }) => {
         className={`toggle-button ${isActive ? "active" : ""}`}
         onClick={() => setIsActive(!isActive)}
       >
-        <i className="fa-regular fa-bell"></i>
+        Remind Me <i className="fa-regular fa-bell"></i>
         {/* {isActive ? "Deactivate Notifications" : "Activate Notifications"} */}
       </button>
       <ToastContainer autoClose={10000} />

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/favorites.css"
+import "../../styles/favorites.css";
 
 export const Favorites = () => {
   const { store, actions } = useContext(Context);
@@ -12,8 +12,8 @@ export const Favorites = () => {
 
   return (
     <div className="text-center bg-dark text-light">
-      <h1>Your Favorite Anime</h1>
-      <div className="container mt-4">
+      <h1 className="py-5">Your Favorite Anime</h1>
+      <div className="container mx-auto">
         <div className="row">
           {store.favorites.length > 0 ? (
             store.favorites.map((fav, index) => (

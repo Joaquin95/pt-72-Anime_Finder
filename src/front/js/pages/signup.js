@@ -22,7 +22,8 @@ export const Signup = () => {
   };
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center my-5 mx-5 p-5">
+      <h2>Create New Account</h2>
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
           Email
@@ -47,7 +48,11 @@ export const Signup = () => {
           aria-describedby="inputGroup-sizing-default"
         />
       </div>
-      <button className="btn btn-info" onClick={() => createUser()}>
+      <button
+        className="btn btn-info"
+        onClick={() => createUser()}
+        style={{ backgroundColor: "#3283ec", border: "black" }}
+      >
         Sign up
       </button>
     </div>
