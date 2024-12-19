@@ -15,7 +15,9 @@ export const Navbar = () => {
           <h1 className="navbar-brand text-dark mb-0 h1">Anime Finder</h1>
         </Link>
         <Link to="/mangaHomePage" className="nav-item">
-          <a className="nav-link text-dark">Manga</a>
+          <a className="nav-link text-dark" style={{ textDecoration: "none" }}>
+            Manga
+          </a>
         </Link>
         <div className="ml-auto nav-item dropdown d-flex">
           <a
@@ -41,7 +43,9 @@ export const Navbar = () => {
               <button className="btn btn-primary text-dark m-1">Profile</button>
             </Link>
             <Link to="/favorites">
-              <button className="btn btn-primary text-dark m-1">Favorites</button>
+              <button className="btn btn-primary text-dark m-1">
+                Favorites
+              </button>
             </Link>
           </div>
         </div>

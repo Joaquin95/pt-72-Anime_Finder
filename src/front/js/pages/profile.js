@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const Profile = () => {
   const [user, setUser] = useState({});
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const getUser = async () => {
 	// console.log(store.token, "get user!!")

@@ -83,14 +83,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 							  }
 				  }
 				);
-				console.log("FavAnimeee with anime_ids: ", favAnime);
 			  });
-			  console.log("favs: ", favs);
 			  setStore({ watchlist: favs });
-  
-			  console.log("filteredAnime with mal_ids", filteredAnime);
-			  // setStore({ anime: filteredAnime });
-			  // return filteredAnime;
 			})
 			.catch((error) => {
 			  console.log("Error fetching anime:", error);

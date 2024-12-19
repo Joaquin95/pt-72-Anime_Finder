@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/notifications.css";
 
-export const Notifications = ({ calendarShows }) => {
+export const Notifications = ({ calendarShows, day }) => {
   const [isActive, setIsActive] = useState(false);
+  const { actions, store } = useContext(Context);
 
   const fetchDailyShows = async (date) => {
     const formattedDate = date.toISOString().split("T")[0];
@@ -23,14 +25,18 @@ export const Notifications = ({ calendarShows }) => {
   };
 
   const notifyShows = async () => {
-    const today = new Date();
-    // Adjust to local time zone and format as YYYY-MM-DD
-    const offsetDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000);
-    const formattedDate = offsetDate.toISOString().split("T")[0];
-
-    if (calendarShows[formattedDate]) {
-      calendarShows[formattedDate].forEach((show) => {
-        toast.info(`Reminder: "${show}" is airing today!`);
+    console.log("notify shows ran");
+    // const today = new Date();
+    // // Adjust to local time zone and format as YYYY-MM-DD
+    // const offsetDate = new Date(
+    //   today.getTime() - today.getTimezoneOffset() * 60000
+    // );
+    actions.getAnimeByDay(day)
+    // const formattedDate = offsetDate.toISOString().split("T")[0];
+    console.log(store.watchlist);
+    if (store.watchlist) {
+      watchlist.forEach((show) => {
+        toast.info(`Reminder: "${show.title}" is airing today!`);
       });
     } else {
       const apiShows = await fetchDailyShows(today);
@@ -66,9 +72,6 @@ export const Notifications = ({ calendarShows }) => {
       >
         <i className="fa-regular fa-bell"></i>
         {/* {isActive ? "Deactivate Notifications" : "Activate Notifications"} */}
-      </button>
-      <button className="test-button" onClick={testNotification}>
-        Test Notification
       </button>
       <ToastContainer autoClose={10000} />
     </div>

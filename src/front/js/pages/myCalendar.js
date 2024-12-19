@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import Notifications from './notifications';
+import Notifications from "./notifications";
 
 const MyCalendar = () => {
   const { actions, store } = useContext(Context);
@@ -34,7 +34,6 @@ const MyCalendar = () => {
     if (!animeSchedules[dayOfWeek]) {
       actions.getAnimeByDay(dayOfWeek);
     }
-    console.log("animeSchedules: ", animeSchedules);
   };
 
   const dayOfWeek = selectedDate.toLocaleDateString("en-US", {
@@ -52,7 +51,7 @@ const MyCalendar = () => {
 
   return (
     <div className="calendar-container">
-      <Notifications calendarShows={shows} />
+      <Notifications calendarShows={store.watchlist, dayOfWeek} />
       <div className="calendar-box">
         <h2>Favorite Shows Calendar</h2>
         <Calendar

@@ -13,10 +13,11 @@ import { Profile } from "./pages/profile";
 import { SearchAnime } from "./pages/searchAnime";
 import { SelectAnime } from "./pages/selectAnime";
 import { SelectGenre } from "./pages/selectGenre";
-import { AnimePage } from "./pages/animePage";
 import injectContext from "./store/appContext";
 import { Favorites } from "./pages/favorites";
 import { MangaHomePage } from "./pages/mangaHomePage";
+import { AnimePage } from "./pages/animePage";
+import { MangaPage } from "./pages/mangaPage";
 
 import "../styles/layout.css";
 
@@ -48,6 +49,7 @@ const Layout = () => {
             <Route element={<MangaHomePage />} path="/mangaHomePage" />
             <Route element={<SelectAnime />} path="/animes/genres/:id" />
             <Route element={<AnimePage />} path="/animes/:id" />
+            <Route element={<MangaPage />} path="/mangaPage"/>
             <Route element={<SelectGenre />} path="/genre" />
             <Route element={<SearchAnime />} path="/searchAnime" />
             <Route element={<h1>Not found!</h1>} />
