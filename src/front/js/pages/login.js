@@ -19,7 +19,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="text-center mt-5">
+    <div className="text-center my-5 mx-5 p-5">
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
           Email

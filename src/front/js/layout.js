@@ -24,7 +24,6 @@ import "../styles/layout.css";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
-
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -49,12 +48,12 @@ const Layout = () => {
             <Route element={<MangaHomePage />} path="/mangaHomePage" />
             <Route element={<SelectAnime />} path="/animes/genres/:id" />
             <Route element={<AnimePage />} path="/animes/:id" />
-            <Route element={<MangaPage />} path="/mangaPage"/>
+            <Route element={<MangaPage />} path="/mangaPage" />
             <Route element={<SelectGenre />} path="/genre" />
             <Route element={<SearchAnime />} path="/searchAnime" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
-          <Footer />
+          {/* <Footer /> */}
         </ScrollToTop>
       </BrowserRouter>
     </div>

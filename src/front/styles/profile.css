@@ -1,10 +1,27 @@
-html {
-    background-color: black;
-}
 h1 {
-    color: rgba(50, 131, 237, 1);
-    font-size: 1.75rem;
+  color: rgba(50, 131, 237, 1);
+  font-size: 1.75rem;
 }
 img {
-    display: inline-flex;
+  display: inline-flex;
+}
+
+.custom-list {
+  list-style: none; /* Remove default bullets */
+  padding-left: 0; /* Remove default padding */
+}
+
+.custom-list li {
+  position: relative;
+  padding-left: 1.5em; /* Space for the custom icon */
+  margin-bottom: 0.5em; /* Add spacing between items */
+  font-size: 1.1rem; /* Optional: Adjust font size */
+}
+
+.custom-list li::before {
+  content: "⭐";
+  position: absolute;
+  left: 0;
+  color: gold;
+  font-size: 1.2rem;
 }

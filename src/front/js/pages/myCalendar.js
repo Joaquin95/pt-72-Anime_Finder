@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Notifications from "./notifications";
+import "../../styles/profile.css";
 
 const MyCalendar = () => {
   const { actions, store } = useContext(Context);
@@ -51,8 +52,7 @@ const MyCalendar = () => {
 
   return (
     <div className="calendar-container">
-      <Notifications calendarShows={store.watchlist, dayOfWeek} />
-      <div className="calendar-box">
+      <div className="calendar-box mb-5" style={{ borderRadius: "8px" }}>
         <h2>Favorite Shows Calendar</h2>
         <Calendar
           onChange={handleDateChange}
@@ -68,7 +68,7 @@ const MyCalendar = () => {
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <ul>
+          <ul className="custom-list">
             {store.watchlist.length > 0 ? (
               store.watchlist.map((show, index) => (
                 <li key={index}>{show.title}</li>
@@ -78,6 +78,7 @@ const MyCalendar = () => {
             )}
           </ul>
         )}
+        <Notifications calendarShows={store.watchlist.dayOfWeek} />
       </div>
     </div>
   );

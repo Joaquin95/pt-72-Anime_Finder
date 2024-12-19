@@ -14,7 +14,7 @@ export const Home = () => {
     <div className="main-div w-100 bg-dark text-light">
       <div className="container">
         {/* Title */}
-        <h1 className="text-center mb-4">Popular Anime</h1>
+        <h1 className="text-center py-4">Popular Anime</h1>
 
         {/* 3-Column Grid */}
         <div className="row justify-content-center">
@@ -23,7 +23,7 @@ export const Home = () => {
               className="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center"
               key={index}
             >
-              <AnimeCard item={item} index={index} category="anime" />
+              <AnimeCard item={item} index={index} />
             </div>
           ))}
         </div>
