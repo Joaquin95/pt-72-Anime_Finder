@@ -19,7 +19,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="text-center mt-2 bg-dark">
+    <div className="text-center mt-5">
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
           Email
@@ -44,7 +44,7 @@ export const Login = () => {
           aria-describedby="inputGroup-sizing-default"
         />
       </div>
-      <button className="btn btn-info m-3" onClick={() => loginUser()}>
+      <button className="btn btn-info" onClick={() => loginUser()}>
         Login
       </button>
     </div>

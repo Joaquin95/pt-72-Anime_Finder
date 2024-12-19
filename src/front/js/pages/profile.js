@@ -42,10 +42,6 @@ export const Profile = () => {
 				store.token ?  
 				<div className="m-5 profile-Container">
 					<h1>Welcome Back</h1>
-					{/* <h3>{user.email}</h3> */}
-					{/* <Link to="/favorites">
-						<button className="btn btn-danger mt-1">Favorites</button>
-					</Link> */}
 					<h1 className="navbar-title">Anime Calendar</h1>
           			<MyCalendar />
 					  <button className="btn btn-danger mt-1" onClick={handleLogout}>Log Out</button>

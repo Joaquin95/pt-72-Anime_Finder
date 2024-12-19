@@ -1,86 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "../store/appContext";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Notifications from './notifications';
 
 const MyCalendar = () => {
+  const { actions, store } = useContext(Context);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [animeSchedules, setAnimeSchedules] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  const getAnimeByDay = (day) => {
+    setLoading(true);
+    setError(null);
 
-  const showPool = [
-    "Solo Leveling",
-    "Jujutsu Kisen",
-    "Bleach",
-    "Let this Grieving Soul Retire",
-    "Dragon Ball Daima",
-    "Dragon Ball Super",
-    "Overlord",
-    "Tower of God",
-    "Wistoria: Wand & Sword",
-    "My Hero Academia",
-    "Goodbye: Dragon Life",
-  ];
-
-  const getRandomShows = () => {
-    const randomCount = Math.floor(Math.random() * 3) + 1; 
-    const shuffledShows = [...showPool].sort(() => Math.random() - 0.5); 
-    return shuffledShows.slice(0, randomCount); 
+    actions.getAnimeByDay(day);
+    // .then((filteredAnime) => {
+    //   setAnimeSchedules((prevSchedules) => ({
+    //     ...prevSchedules,
+    //     [day]: filteredAnime.map((anime) => anime.title),
+    //   }));
+    // })
+    // .catch(() => setError("Failed to load shows."))
+    // .finally(() => setLoading(false));
+    // console.log("anime from store: ", store.anime);
   };
-
-  const [shows, setShows] = useState({
-    "2024-11-19": getRandomShows(),
-    "2024-11-23": getRandomShows(),
-  });
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
 
-    const formattedDate = newDate.toISOString().split("T")[0];
-    if (!shows[formattedDate]) {
-      setShows((prev) => ({
-        ...prev,
-        [formattedDate]: getRandomShows(),
-      }));
+    const dayOfWeek = newDate.toLocaleDateString("en-US", { weekday: "long" });
+    if (!animeSchedules[dayOfWeek]) {
+      actions.getAnimeByDay(dayOfWeek);
     }
+    console.log("animeSchedules: ", animeSchedules);
   };
 
-  const handleAddShow = () => {
-    const showName = prompt("Enter show name:");
-    if (showName) {
-      const formattedDate = selectedDate.toISOString().split("T")[0];
-      setShows((prev) => ({
-        ...prev,
-        [formattedDate]: [...(prev[formattedDate] || []), showName],
-      }));
-    }
-  };
+  const dayOfWeek = selectedDate.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
 
-  const selectedDateShows = shows[selectedDate.toISOString().split("T")[0]] || [];
+  const selectedDayShows = animeSchedules[dayOfWeek] || [];
 
-    // data.broadcast.day for fetching the animes for the day selected on the calendar
-  // use this URL to get to data.broadcast.day https://api.jikan.moe/v4/anime
-  // that way when a user clicks on a date, it will display the animes for that day
+  useEffect(() => {
+    console.log("useEffectttttt: ");
+    actions.getFavorites();
+    // actions.getAnimeByDay(new Date());
+    handleDateChange(new Date());
+  }, []);
 
   return (
     <div className="calendar-container">
+      <Notifications calendarShows={shows} />
       <div className="calendar-box">
-      <h2>Favorite Shows Calendar</h2>
-      <Calendar
-        onChange={handleDateChange}
-        value={selectedDate}
-        tileClassName={({ date, view }) => {
-          const formattedDate = date.toISOString().split("T")[0];
-          return shows[formattedDate] ? "highlight" : null;
-        }}
-      />
-      <h3>Shows on {selectedDate.toDateString()}:</h3>
-      <ul>
-        {selectedDateShows.map((show, index) => (
-          <li key={index}>{show}</li>
-        ))}
-      </ul>
-      <button onClick={handleAddShow}>Add Show</button>
+        <h2>Favorite Shows Calendar</h2>
+        <Calendar
+          onChange={handleDateChange}
+          value={selectedDate}
+          tileClassName={({ date }) => {
+            const day = date.toLocaleDateString("en-US", { weekday: "long" });
+            return animeSchedules[day] ? "highlight" : null;
+          }}
+        />
+        <h3>Favorite Shows on {dayOfWeek}:</h3>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : (
+          <ul>
+            {store.watchlist.length > 0 ? (
+              store.watchlist.map((show, index) => (
+                <li key={index}>{show.title}</li>
+              ))
+            ) : (
+              <p>No favorite shows for this day.</p>
+            )}
+          </ul>
+        )}
+      </div>
     </div>
-  </div>
   );
 };
 
