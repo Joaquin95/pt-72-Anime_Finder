@@ -22,39 +22,43 @@ export const Signup = () => {
   };
 
   return (
-    <div className="text-center my-5 mx-5 p-5">
-      <h2>Create New Account</h2>
-      <div className="input-group mb-3">
-        <span className="input-group-text" id="inputGroup-sizing-default">
-          Email
-        </span>
-        <input
-          type="text"
-          onChange={(e) => setEmail(e.target.value)}
-          className="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-default"
-        />
+    <div className="signup d-flex justify-content-center align-items-center">
+      <div className="overlay"></div>
+      <div className="text-center signup-content">
+        <h2>Create New Account</h2>
+        <div className="login-container rounded"></div>
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-default">
+            Email
+          </span>
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            className="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+        </div>
+        <div className="input-group mb-3">
+          <span className="input-group-text" id="inputGroup-sizing-default">
+            Password
+          </span>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            className="form-control"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-default"
+          />
+        </div>
+        <button
+          className="btn btn-info"
+          onClick={() => createUser()}
+          style={{ backgroundColor: "#3283ec", border: "black" }}
+        >
+          Sign up
+        </button>
       </div>
-      <div className="input-group mb-3">
-        <span className="input-group-text" id="inputGroup-sizing-default">
-          Password
-        </span>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          className="form-control"
-          aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-default"
-        />
-      </div>
-      <button
-        className="btn btn-info"
-        onClick={() => createUser()}
-        style={{ backgroundColor: "#3283ec", border: "black" }}
-      >
-        Sign up
-      </button>
     </div>
   );
 };
