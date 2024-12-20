@@ -52,7 +52,7 @@ export const Navbar = () => {
             <li className="nav-item">
               <Link
                 to="/mangaHomePage"
-                className="nav-link text-decoration-none text-light"
+                className="btn btn-primary text-dark mb-2 w-100"
               >
                 Manga
               </Link>

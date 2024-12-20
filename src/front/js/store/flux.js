@@ -112,6 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         if (!store.token) {
           console.error("No token found. Please log in.");
+          window.alert("Please login again.")
           return;
         }
 

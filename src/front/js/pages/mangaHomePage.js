@@ -7,7 +7,7 @@ export const MangaHomePage = () => {
   const { store, actions } = useContext(Context);
 
   useEffect(() => {
-    actions.getManga(); // Fetch top 10 manga when the component mounts
+    actions.getManga();
   }, []);
 
   return (
