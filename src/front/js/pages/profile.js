@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import ProfilePic from "../../img/user image.png";
 import "../../styles/profile.css";
 import MyCalendar from "./myCalendar";
 import { Link, useNavigate } from "react-router-dom";
+import kakashi from "../../js/pages/kakashi.jpg";
 
 export const Profile = () => {
   const [user, setUser] = useState({});
@@ -59,10 +59,7 @@ export const Profile = () => {
         <div>
           <div className="profile-Container bg-dark">
             <h1 className="py-3">YOU MUST LOGIN</h1>
-            <img
-              src="https://static.wikia.nocookie.net/100kanojo/images/d/db/MemeAnimeInfobox.png/revision/latest?cb=20241124163329"
-              className="img-fluid rounded mb-5"
-            />
+            <img src={kakashi} className="img-fluid rounded mb-5" />
             <div className="button-group pb-5">
               <Link to={"/"}>
                 <button className="btn btn-secondary me-4"> Home</button>
