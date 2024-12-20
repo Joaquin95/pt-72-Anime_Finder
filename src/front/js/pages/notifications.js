@@ -58,8 +58,8 @@ export const Notifications = ({ calendarShows, day }) => {
         className={`toggle-button ${isActive ? "active" : ""}`}
         onClick={() => setIsActive(!isActive)}
       >
-        Remind Me <i className="fa-regular fa-bell"></i>
-        {/* {isActive ? "Deactivate Notifications" : "Activate Notifications"} */}
+        {isActive ? "Stop Reminding Me" : "Remind Me"}{" "}
+        <i className="fa-regular fa-bell"></i>
       </button>
       <ToastContainer autoClose={10000} />
     </div>

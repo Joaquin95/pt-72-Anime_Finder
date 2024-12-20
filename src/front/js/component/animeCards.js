@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const AnimeCard = ({ item, index }) => {
   const { store, actions } = useContext(Context);
@@ -51,14 +52,13 @@ export const AnimeCard = ({ item, index }) => {
         <p className="card-text">Type: {item.type || "N/A"}</p>
         <p className="card-text">Episodes: {item.episodes || "N/A"}</p>
         <div className="d-flex justify-content-between mt-auto">
-          <button
-            className="btn btn-warning me-3"
+          <Link
+            to="/animePage"
+            className="btn btn-outline-dark py-1 me-3"
             onClick={animePage}
-            type="button"
-            aria-label="View Series Info"
           >
             Series Info
-          </button>
+          </Link>
           {store.token ? (
             <button
               className="btn btn-outline-dark"

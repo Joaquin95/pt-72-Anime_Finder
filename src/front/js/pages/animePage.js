@@ -28,14 +28,6 @@ export const AnimePage = () => {
         getAnime();
     }, [id]);
 
-    if (loading) {
-        return <div className="text-center mt-5 bg-dark text-light">Loading...</div>;
-    }
-
-    if (!anime) {
-        return <div className="text-center mt-5 bg-dark text-light">Failed to load anime data.</div>;
-    }
-
     return (
         <div className="text-center mt-5 bg-dark">
             <div className="text-light">{anime.title || "Anime title not available"}</div>
