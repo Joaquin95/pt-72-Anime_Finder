@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/Anime logo2.jpg";
 import "../../styles/navbar.css";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <nav className="navbar bg-primary text-info">
       <div className="container">
@@ -66,12 +69,21 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link
-                to="/login"
-                className="btn btn-primary text-dark mb-2 w-100"
-              >
-                Login
-              </Link>
+              {store.token ? (
+                <button
+                  className="btn btn-primary text-dark mb-2 w-100"
+                  onClick={() => actions.logout()}
+                >
+                  Log Out
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="btn btn-primary text-dark mb-2 w-100"
+                >
+                  Login
+                </Link>
+              )}
             </li>
             <li className="nav-item">
               <Link

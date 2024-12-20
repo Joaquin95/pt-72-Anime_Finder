@@ -57,8 +57,23 @@ export const Profile = () => {
         </div>
       ) : (
         <div>
-          <h1>YOU MUST LOGIN</h1>
-          <Link to="/login">Login</Link>
+          <div className="profile-Container bg-dark">
+            <h1 className="py-3">YOU MUST LOGIN</h1>
+            <img
+              src="https://static.wikia.nocookie.net/100kanojo/images/d/db/MemeAnimeInfobox.png/revision/latest?cb=20241124163329"
+              className="img-fluid rounded mb-5"
+            />
+            <div className="button-group pb-5">
+              <Link to={"/"}>
+                <button className="btn btn-secondary me-4"> Home</button>
+              </Link>
+              <Link to={"/login"}>
+                <button className="btn btn-primary me-4">Login</button>
+              </Link>
+            </div>
+          </div>
+          {/* <h1>YOU MUST LOGIN</h1>
+          <Link to="/login">Login</Link> */}
         </div>
       )}
     </div>
