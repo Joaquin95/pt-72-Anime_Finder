@@ -1,25 +1,41 @@
-import React, { useContext, useState} from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import "../../styles/favorites.css";
 
 export const Favorites = () => {
-	const { store, actions } = useContext(Context);
-    const [anime, setAnime] = useState({})
-    const { id } = useParams();
+  const { store, actions } = useContext(Context);
 
-    useEffect(() => {
-        async function getAnime() {
-            const response = await fetch("https://api.jikan.moe/v4/anime/" + id + "/full")
-            const data = await response.json()
-            setAnime(data.data)
-        }
-        getAnime() 
-    }, [])
-	
-	return (
-		<div className="text-center mt-5 bg-dark">
-            <div className="text-light">{anime.title}</div>
-            <h1>Here is your Favorites page</h1>
-		</div>
-	);
+  // Fetch favorites on component mount
+  useEffect(() => {
+    actions.getFavorites();
+  }, []);
+  
+  return (
+    <div className="text-center bg-dark text-light">
+      <h1 className="py-5">Your Favorite Anime</h1>
+      <div className="container mx-auto">
+        <div className="row">
+          {store.favorites.length > 0 ? (
+            store.favorites.map((fav, index) => (
+              <div key={index} className="col-12 col-md-4 mb-4">
+                <div className="card bg-light shadow-sm">
+                  <img
+                    src={fav.image}
+                    className="card-img-top"
+                    style={{ height: "180px", objectFit: "contain" }}
+                    alt={fav.title || "Anime Image"}
+                  />
+                  <div className="card-body text-dark">
+                    <h5 className="card-title">{fav.title}</h5>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No favorites added yet. Start adding some!</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
