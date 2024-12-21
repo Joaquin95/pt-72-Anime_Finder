@@ -9,7 +9,7 @@ export const Favorites = () => {
   useEffect(() => {
     actions.getFavorites();
   }, []);
-
+  
   return (
     <div className="text-center bg-dark text-light">
       <h1 className="py-5">Your Favorite Anime</h1>
