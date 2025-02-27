@@ -16,17 +16,17 @@ const MyCalendar = () => {
     setLoading(true);
     setError(null);
 
-    actions.getAnimeByDay(day);
-    // .then((filteredAnime) => {
-    //   setAnimeSchedules((prevSchedules) => ({
-    //     ...prevSchedules,
-    //     [day]: filteredAnime.map((anime) => anime.title),
-    //   }));
-    // })
-    // .catch(() => setError("Failed to load shows."))
-    // .finally(() => setLoading(false));
-    // console.log("anime from store: ", store.anime);
-  };
+  //   actions.getAnimeByDay(day);
+  //   .then((filteredAnime) => {
+  //     setAnimeSchedules((prevSchedules) => ({
+  //       ...prevSchedules,
+  //       [day]: filteredAnime.map((anime) => anime.title),
+  //     }));
+  //   })
+  //   .catch(() => setError("Failed to load shows."))
+  //   .finally(() => setLoading(false));
+  //   console.log("anime from store: ", store.anime);
+  // };
 
   const handleDateChange = (newDate) => {
     setSelectedDate(newDate);
